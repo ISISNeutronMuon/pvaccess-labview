@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<nidocument>
+<nicomment>
+
+<nifamily familyname="PVAccess Library" displayname="PVAccess Library">
+</nifamily>
+</nicomment>
+<nierror code="502450">
+Unspecified
+</nierror>
+<nierror code="502451">
+Wait interrupted
+</nierror>
+<nierror code="502452">
+Wait timeout
+</nierror>
+<nierror code="502453">
+PV has not value field
+</nierror>
+<nierror code="502454">
+Could not convert value to specified type
+</nierror>
+<nierror code="502455">
+The type of the PV value does not match the type of the get method used
+</nierror>
+<nierror code="502456">
+Tried to post to a PV that does not exist
+</nierror>
+</nidocument>

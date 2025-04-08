@@ -1,0 +1,6 @@
+# Dependencies
+epics-base/
+pvxs/
+
+# CMake output
+build/

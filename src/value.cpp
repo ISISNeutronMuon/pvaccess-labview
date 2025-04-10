@@ -79,105 +79,101 @@ createNTScalar(LVTypeCode type_code, Value** value)
 
 template<typename T>
 labview::ErrCode
-getValue(Value* value, TypeCode type_code, T* result)
+readField(const Value* value,
+          const char* field_name,
+          const TypeCode type_code,
+          T* result)
 {
     try {
-        if (auto value_field = (*value)["value"]) {
-            if (value_field.type() != type_code) {
-                return PVALVError::type_mismatch;
-            }
-            *result = value_field.as<T>();
-        } else {
-            return PVALVError::no_value_field;
-        }
+        auto field = value->lookup(field_name);
+        if (field.type() != type_code)
+            throw labview::lv_err(PVALVError::type_mismatch);
+
+        *result = field.as<T>();
     } catch (...) {
         return err2code();
     }
     return PVALVError::no_err;
 }
 
-#define GETVALUE_FN(NAME, TYPE, TYPE_CODE)                                     \
-    extern "C" PVA_LABVIEW_EXPORT labview::ErrCode getValue##NAME(             \
-      Value* value, TYPE* result)                                              \
+#define READ_FN(NAME, TYPE, TYPE_CODE)                                         \
+    extern "C" PVA_LABVIEW_EXPORT labview::ErrCode read##NAME(                 \
+      Value* value, const char* field_name, TYPE* result)                      \
     {                                                                          \
-        return getValue(value, TYPE_CODE, result);                             \
+        return readField(value, field_name, TYPE_CODE, result);                \
     }
-GETVALUE_FN(Bool, int16_t, TypeCode::Bool)
-GETVALUE_FN(Int8, int8_t, TypeCode::Int8)
-GETVALUE_FN(Int16, int16_t, TypeCode::Int16)
-GETVALUE_FN(Int32, int32_t, TypeCode::Int32)
-GETVALUE_FN(Int64, int64_t, TypeCode::Int64)
-GETVALUE_FN(UInt8, uint8_t, TypeCode::UInt8)
-GETVALUE_FN(UInt16, uint16_t, TypeCode::UInt16)
-GETVALUE_FN(UInt32, uint32_t, TypeCode::UInt32)
-GETVALUE_FN(UInt64, uint64_t, TypeCode::UInt64)
-GETVALUE_FN(Float32, float, TypeCode::Float32)
-GETVALUE_FN(Float64, double, TypeCode::Float64)
-GETVALUE_FN(String, labview::LStrHandle, TypeCode::String)
-GETVALUE_FN(BoolArray, LV1DArrayHandle<int16_t>, TypeCode::BoolA)
-GETVALUE_FN(Int8Array, LV1DArrayHandle<int8_t>, TypeCode::Int8A)
-GETVALUE_FN(Int16Array, LV1DArrayHandle<int16_t>, TypeCode::Int16A)
-GETVALUE_FN(Int32Array, LV1DArrayHandle<int32_t>, TypeCode::Int32A)
-GETVALUE_FN(Int64Array, LV1DArrayHandle<int64_t>, TypeCode::Int64A)
-GETVALUE_FN(UInt8Array, LV1DArrayHandle<uint8_t>, TypeCode::UInt8A)
-GETVALUE_FN(UInt16Array, LV1DArrayHandle<uint16_t>, TypeCode::UInt16A)
-GETVALUE_FN(UInt32Array, LV1DArrayHandle<uint32_t>, TypeCode::UInt32A)
-GETVALUE_FN(UInt64Array, LV1DArrayHandle<uint64_t>, TypeCode::UInt64A)
-GETVALUE_FN(Float32Array, LV1DArrayHandle<float>, TypeCode::Float32A)
-GETVALUE_FN(Float64Array, LV1DArrayHandle<double>, TypeCode::Float64A)
-GETVALUE_FN(StringArray,
-            LV1DArrayHandle<labview::LStrHandle>,
-            TypeCode::StringA)
+READ_FN(Bool, int16_t, TypeCode::Bool)
+READ_FN(Int8, int8_t, TypeCode::Int8)
+READ_FN(Int16, int16_t, TypeCode::Int16)
+READ_FN(Int32, int32_t, TypeCode::Int32)
+READ_FN(Int64, int64_t, TypeCode::Int64)
+READ_FN(UInt8, uint8_t, TypeCode::UInt8)
+READ_FN(UInt16, uint16_t, TypeCode::UInt16)
+READ_FN(UInt32, uint32_t, TypeCode::UInt32)
+READ_FN(UInt64, uint64_t, TypeCode::UInt64)
+READ_FN(Float32, float, TypeCode::Float32)
+READ_FN(Float64, double, TypeCode::Float64)
+READ_FN(String, labview::LStrHandle, TypeCode::String)
+READ_FN(BoolArray, LV1DArrayHandle<int16_t>, TypeCode::BoolA)
+READ_FN(Int8Array, LV1DArrayHandle<int8_t>, TypeCode::Int8A)
+READ_FN(Int16Array, LV1DArrayHandle<int16_t>, TypeCode::Int16A)
+READ_FN(Int32Array, LV1DArrayHandle<int32_t>, TypeCode::Int32A)
+READ_FN(Int64Array, LV1DArrayHandle<int64_t>, TypeCode::Int64A)
+READ_FN(UInt8Array, LV1DArrayHandle<uint8_t>, TypeCode::UInt8A)
+READ_FN(UInt16Array, LV1DArrayHandle<uint16_t>, TypeCode::UInt16A)
+READ_FN(UInt32Array, LV1DArrayHandle<uint32_t>, TypeCode::UInt32A)
+READ_FN(UInt64Array, LV1DArrayHandle<uint64_t>, TypeCode::UInt64A)
+READ_FN(Float32Array, LV1DArrayHandle<float>, TypeCode::Float32A)
+READ_FN(Float64Array, LV1DArrayHandle<double>, TypeCode::Float64A)
+READ_FN(StringArray, LV1DArrayHandle<labview::LStrHandle>, TypeCode::StringA)
 
 template<typename T>
 labview::ErrCode
-setValue(Value* value, TypeCode type_code, T new_value)
+writeField(Value* const value,
+           const char* field_name,
+           const TypeCode type_code,
+           T new_value)
 {
     try {
-        if (auto value_field = (*value)["value"]) {
-            if (value_field.type() != type_code) {
-                return PVALVError::type_mismatch;
-            }
-            (*value)["value"] = new_value;
-        } else {
-            return PVALVError::no_value_field;
-        }
+        auto field = value->lookup(field_name);
+        if (field.type() != type_code)
+            throw labview::lv_err(PVALVError::type_mismatch);
+
+        value->update(field_name, new_value);
     } catch (...) {
         return err2code();
     }
     return PVALVError::no_err;
 }
 
-#define SETVALUE_FN(NAME, TYPE, TYPE_CODE)                                     \
-    extern "C" PVA_LABVIEW_EXPORT labview::ErrCode setValue##NAME(             \
-      Value* value, TYPE new_value)                                            \
+#define WRITE_FN(NAME, TYPE, TYPE_CODE)                                        \
+    extern "C" PVA_LABVIEW_EXPORT labview::ErrCode write##NAME(                \
+      Value* const value, const char* field_name, TYPE new_value)              \
     {                                                                          \
-        return setValue(value, TYPE_CODE, new_value);                          \
+        return writeField(value, field_name, TYPE_CODE, new_value);            \
     }
 
-SETVALUE_FN(Bool, int16_t, TypeCode::Bool)
-SETVALUE_FN(Int8, int8_t, TypeCode::Int8)
-SETVALUE_FN(Int16, int16_t, TypeCode::Int16)
-SETVALUE_FN(Int32, int32_t, TypeCode::Int32)
-SETVALUE_FN(Int64, int64_t, TypeCode::Int64)
-SETVALUE_FN(UInt8, uint8_t, TypeCode::UInt8)
-SETVALUE_FN(UInt16, uint16_t, TypeCode::UInt16)
-SETVALUE_FN(UInt32, uint32_t, TypeCode::UInt32)
-SETVALUE_FN(UInt64, uint64_t, TypeCode::UInt64)
-SETVALUE_FN(Float32, float, TypeCode::Float32)
-SETVALUE_FN(Float64, double, TypeCode::Float64)
-SETVALUE_FN(String, labview::LStrHandle, TypeCode::String)
-SETVALUE_FN(BoolArray, LV1DArrayHandle<int16_t>, TypeCode::BoolA)
-SETVALUE_FN(Int8Array, LV1DArrayHandle<int8_t>, TypeCode::Int8A)
-SETVALUE_FN(Int16Array, LV1DArrayHandle<int16_t>, TypeCode::Int16A)
-SETVALUE_FN(Int32Array, LV1DArrayHandle<int32_t>, TypeCode::Int32A)
-SETVALUE_FN(Int64Array, LV1DArrayHandle<int64_t>, TypeCode::Int64A)
-SETVALUE_FN(UInt8Array, LV1DArrayHandle<uint8_t>, TypeCode::UInt8A)
-SETVALUE_FN(UInt16Array, LV1DArrayHandle<uint16_t>, TypeCode::UInt16A)
-SETVALUE_FN(UInt32Array, LV1DArrayHandle<uint32_t>, TypeCode::UInt32A)
-SETVALUE_FN(UInt64Array, LV1DArrayHandle<uint64_t>, TypeCode::UInt64A)
-SETVALUE_FN(Float32Array, LV1DArrayHandle<float>, TypeCode::Float32A)
-SETVALUE_FN(Float64Array, LV1DArrayHandle<double>, TypeCode::Float64A)
-SETVALUE_FN(StringArray,
-            LV1DArrayHandle<labview::LStrHandle>,
-            TypeCode::StringA)
+WRITE_FN(Bool, int16_t, TypeCode::Bool)
+WRITE_FN(Int8, int8_t, TypeCode::Int8)
+WRITE_FN(Int16, int16_t, TypeCode::Int16)
+WRITE_FN(Int32, int32_t, TypeCode::Int32)
+WRITE_FN(Int64, int64_t, TypeCode::Int64)
+WRITE_FN(UInt8, uint8_t, TypeCode::UInt8)
+WRITE_FN(UInt16, uint16_t, TypeCode::UInt16)
+WRITE_FN(UInt32, uint32_t, TypeCode::UInt32)
+WRITE_FN(UInt64, uint64_t, TypeCode::UInt64)
+WRITE_FN(Float32, float, TypeCode::Float32)
+WRITE_FN(Float64, double, TypeCode::Float64)
+WRITE_FN(String, labview::LStrHandle, TypeCode::String)
+WRITE_FN(BoolArray, LV1DArrayHandle<int16_t>, TypeCode::BoolA)
+WRITE_FN(Int8Array, LV1DArrayHandle<int8_t>, TypeCode::Int8A)
+WRITE_FN(Int16Array, LV1DArrayHandle<int16_t>, TypeCode::Int16A)
+WRITE_FN(Int32Array, LV1DArrayHandle<int32_t>, TypeCode::Int32A)
+WRITE_FN(Int64Array, LV1DArrayHandle<int64_t>, TypeCode::Int64A)
+WRITE_FN(UInt8Array, LV1DArrayHandle<uint8_t>, TypeCode::UInt8A)
+WRITE_FN(UInt16Array, LV1DArrayHandle<uint16_t>, TypeCode::UInt16A)
+WRITE_FN(UInt32Array, LV1DArrayHandle<uint32_t>, TypeCode::UInt32A)
+WRITE_FN(UInt64Array, LV1DArrayHandle<uint64_t>, TypeCode::UInt64A)
+WRITE_FN(Float32Array, LV1DArrayHandle<float>, TypeCode::Float32A)
+WRITE_FN(Float64Array, LV1DArrayHandle<double>, TypeCode::Float64A)
+WRITE_FN(StringArray, LV1DArrayHandle<labview::LStrHandle>, TypeCode::StringA)

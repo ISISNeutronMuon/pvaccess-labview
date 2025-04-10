@@ -8,7 +8,7 @@ enum PVALVError : labview::ErrCode
     unspecified = 502450,
     interrupted = 502451,
     timeout = 502452,
-    no_value_field = 502453,
+    field_missing = 502453,
     cannot_convert_value = 502454,
     type_mismatch = 502455,
     server_post_pv_not_found = 502456,

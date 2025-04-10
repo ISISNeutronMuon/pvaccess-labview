@@ -15,7 +15,7 @@ Wait interrupted
 Wait timeout
 </nierror>
 <nierror code="502453">
-PV has not value field
+PV does not have the specified field
 </nierror>
 <nierror code="502454">
 Could not convert value to specified type

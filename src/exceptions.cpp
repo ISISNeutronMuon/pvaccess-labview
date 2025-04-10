@@ -11,6 +11,9 @@ err2code()
     } catch (const pvxs::NoConvert& e) {
         static_cast<void>(e); // Supress unreferenced variable warning
         return PVALVError::cannot_convert_value;
+    } catch (const pvxs::LookupError& e) {
+        static_cast<void>(e);
+        return PVALVError::field_missing;
     } catch (const pvxs::client::Interrupted& e) {
         static_cast<void>(e);
         return PVALVError::interrupted;

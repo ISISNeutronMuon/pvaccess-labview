@@ -93,15 +93,13 @@ template<typename T>
 class LV1DArrayHandle : public LVArrayBaseHandle<T, 1>
 {
   public:
-    LV1DArrayHandle()
-      : LVArrayBaseHandle() {};
+    using LVArrayBaseHandle<T, 1>::LVArrayBaseHandle;
 };
 
 class LStrHandle : public LVArrayBaseHandle<char, 1>
 {
   public:
-    LStrHandle()
-      : LVArrayBaseHandle() {};
+    using LVArrayBaseHandle::LVArrayBaseHandle;
     LStrHandle(std::string str)
       : LVArrayBaseHandle()
     {

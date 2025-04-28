@@ -95,8 +95,9 @@ if(MSVC)
   target_link_options(pva_labview PRIVATE "/SAFESEH:NO")
 else()
   target_link_libraries(pva_labview PRIVATE
-    "Com"
-    "pvxs"
+    "${PVXS_LIB}/libpvxs.so"
+    "${EPICS_LIB}/libCom.so"
+    "${EVENT_LIB}/libevent_core.so"
   )
 endif()
 

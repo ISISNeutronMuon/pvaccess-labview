@@ -21,6 +21,8 @@ extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 closeClient(client::Context* client)
 {
     try {
+        if (client == nullptr)
+            throw labview::lv_err(PVALVError::null_ptr);
         delete client;
     } catch (...) {
         return err2code();
@@ -32,6 +34,9 @@ extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 get(client::Context* client, char pv_name[], double timeout, Value** value)
 {
     try {
+        if (client == nullptr)
+            throw labview::lv_err(PVALVError::null_ptr);
+
         *value = new Value{ client->get(pv_name).exec()->wait(timeout) };
     } catch (...) {
         return err2code();
@@ -43,6 +48,9 @@ extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 put(client::Context* client, char pv_name[], double timeout, Value* value)
 {
     try {
+        if (client == nullptr || value == nullptr)
+            throw labview::lv_err(PVALVError::null_ptr);
+
         client->put(pv_name)
           .set("value", (*value)["value"])
           .exec()

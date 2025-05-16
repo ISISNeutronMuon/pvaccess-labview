@@ -26,4 +26,7 @@ The type of the PV value does not match the type of the get method used
 <nierror code="502456">
 Tried to post to a PV that does not exist
 </nierror>
+<nierror code="502457">
+Null pointer
+</nierror>
 </nidocument>

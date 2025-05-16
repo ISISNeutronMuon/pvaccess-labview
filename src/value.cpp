@@ -85,6 +85,9 @@ readField(const Value* value,
           T* result)
 {
     try {
+        if (value == nullptr)
+            throw labview::lv_err(PVALVError::null_ptr);
+
         auto field = value->lookup(field_name);
         if (field.type() != type_code)
             throw labview::lv_err(PVALVError::type_mismatch);
@@ -135,6 +138,9 @@ writeField(Value* const value,
            T new_value)
 {
     try {
+        if (value == nullptr)
+            throw labview::lv_err(PVALVError::null_ptr);
+
         auto field = value->lookup(field_name);
         if (field.type() != type_code)
             throw labview::lv_err(PVALVError::type_mismatch);

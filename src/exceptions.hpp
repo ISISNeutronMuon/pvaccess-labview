@@ -12,6 +12,7 @@ enum PVALVError : labview::ErrCode
     cannot_convert_value = 502454,
     type_mismatch = 502455,
     server_post_pv_not_found = 502456,
+    null_ptr = 502457,
 };
 
 labview::ErrCode

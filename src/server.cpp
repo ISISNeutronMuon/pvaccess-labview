@@ -69,7 +69,7 @@ extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 addPV(server::StaticSource* source, char pv_name[], Value* value)
 {
     try {
-        if (source == nullptr || value == nullptr || event_ref == nullptr)
+        if (source == nullptr || value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
         auto pv{ server::SharedPV::buildMailbox() };

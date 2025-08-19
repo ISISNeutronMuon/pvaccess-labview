@@ -8,9 +8,22 @@ An [EPICS PVAccess](https://docs.epics-controls.org/en/latest/pv-access/protocol
 
 ## Building
 
-- Clone [EPICS Base](https://github.com/epics-base/epics-base/) to `./epics-base` and built it
+- Clone [EPICS Base](https://github.com/epics-base/epics-base/) to `./epics-base` and build it
 
-- Clone [PVXS](https://github.com/epics-base/pvxs/) to `./pvxs` and built it
+  ```sh
+  git clone https://github.com/epics-base/epics-base.git
+  make -C epics-base
+  ```
+
+- Clone [PVXS](https://github.com/epics-base/pvxs/) to `./pvxs` and build it
+
+  ```sh
+  git clone --recurse-submodules https://github.com/epics-base/pvxs.git
+  echo 'EPICS_BASE=$(TOP)/../epics-base' > ./pvxs/configure/RELEASE.local
+  make -C pvxs/bundle libevent
+  make -C pvxs
+  ```
+  See the [PVXS docs](https://epics-base.github.io/pvxs/building.html) for more details
 
 - Build this library
 
@@ -20,7 +33,7 @@ An [EPICS PVAccess](https://docs.epics-controls.org/en/latest/pv-access/protocol
 		cmake --build .\build --config Release
 		```
 	- Linux
-		```
+		```sh
 		cmake -B ./build
 		cmake --build ./build
 		```

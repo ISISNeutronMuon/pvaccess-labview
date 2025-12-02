@@ -9,4 +9,5 @@
 	<Item Name="Close Server.vi" Type="VI" URL="../Close Server.vi"/>
 	<Item Name="Create Server.vi" Type="VI" URL="../Create Server.vi"/>
 	<Item Name="Server.lvclass" Type="LVClass" URL="../Server/Server.lvclass"/>
+	<Item Name="Source.lvclass" Type="LVClass" URL="../Source/Source.lvclass"/>
 </Library>

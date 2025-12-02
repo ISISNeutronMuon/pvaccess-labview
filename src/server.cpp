@@ -50,7 +50,7 @@ stopServer(server::Server* server)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-closeServer(server::Server* server, server::StaticSource* source)
+closeServer(server::Server* server)
 {
     try {
         if (server == nullptr)

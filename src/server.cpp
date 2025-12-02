@@ -58,7 +58,6 @@ closeServer(server::Server* server)
 
         server->stop();
         delete server;
-        delete source;
     } catch (...) {
         return err2code();
     }

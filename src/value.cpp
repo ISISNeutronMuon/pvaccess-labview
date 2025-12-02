@@ -183,3 +183,17 @@ WRITE_FN(UInt64Array, LV1DArrayHandle<uint64_t>, TypeCode::UInt64A)
 WRITE_FN(Float32Array, LV1DArrayHandle<float>, TypeCode::Float32A)
 WRITE_FN(Float64Array, LV1DArrayHandle<double>, TypeCode::Float64A)
 WRITE_FN(StringArray, LV1DArrayHandle<labview::LStrHandle>, TypeCode::StringA)
+
+extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
+deleteValue(Value* const value)
+{
+    try {
+        if (value == nullptr)
+            throw labview::lv_err(PVALVError::null_ptr);
+
+        delete value;
+    } catch (...) {
+        return err2code();
+    }
+    return PVALVError::no_err;
+}

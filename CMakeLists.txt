@@ -24,9 +24,9 @@ endif()
 
 if(WIN32)
   if(${CMAKE_GENERATOR_PLATFORM} MATCHES "Win32")
-    cmake_path(SET LABVIEW_LIB "$ENV{ProgramFiles\(x86\)}/National Instruments/LabVIEW 2021/cintools")
+    cmake_path(SET LABVIEW_LIB "$ENV{ProgramFiles\(x86\)}/National Instruments/LabVIEW 2025/cintools")
   else()
-    cmake_path(SET LABVIEW_LIB "$ENV{ProgramFiles}/National Instruments/LabVIEW 2021/cintools")
+    cmake_path(SET LABVIEW_LIB "$ENV{ProgramFiles}/National Instruments/LabVIEW 2025/cintools")
   endif()
 endif()
 

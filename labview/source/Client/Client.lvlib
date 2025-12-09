@@ -7,7 +7,5 @@
 
 </Property>
 	<Item Name="Client.lvclass" Type="LVClass" URL="../Client/Client.lvclass"/>
-	<Item Name="Close Client.vi" Type="VI" URL="../Close Client.vi"/>
-	<Item Name="Create Client.vi" Type="VI" URL="../Create Client.vi"/>
 	<Item Name="Subscription.lvclass" Type="LVClass" URL="../Subscription/Subscription.lvclass"/>
 </Library>

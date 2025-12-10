@@ -8,6 +8,13 @@
 
 using namespace pvxs;
 
+struct Timestamp
+{
+    int64_t secondsPastEpoch;
+    int32_t nanoseconds;
+    int32_t userTag;
+};
+
 TypeCode
 convertTypeCode(LVTypeCode code)
 {
@@ -108,6 +115,24 @@ readField(const Value* value,
             throw labview::lv_err(PVALVError::type_mismatch);
 
         *result = field.as<T>();
+    } catch (...) {
+        return err2code();
+    }
+    return PVALVError::no_err;
+}
+
+extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
+readTimestamp(const Value* value, const char* field_name, Timestamp* result)
+{
+    try {
+        if (value == nullptr)
+            throw labview::lv_err(PVALVError::null_ptr);
+
+        auto timestamp = value->lookup(field_name);
+
+        *result = { timestamp.lookup("secondsPastEpoch").as<int64_t>(),
+                    timestamp.lookup("nanoseconds").as<int32_t>(),
+                    timestamp.lookup("userTag").as<int32_t>() };
     } catch (...) {
         return err2code();
     }

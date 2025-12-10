@@ -77,6 +77,21 @@ createNTScalar(LVTypeCode type_code, Value** value)
     return PVALVError::no_err;
 }
 
+extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
+readFieldType(const Value* value, const char* field_name, TypeCode* type_code)
+{
+    try {
+        if (value == nullptr)
+            throw labview::lv_err(PVALVError::null_ptr);
+
+        auto field = value->lookup(field_name);
+        *type_code = field.type();
+    } catch (...) {
+        return err2code();
+    }
+    return PVALVError::no_err;
+}
+
 template<typename T>
 labview::ErrCode
 readField(const Value* value,

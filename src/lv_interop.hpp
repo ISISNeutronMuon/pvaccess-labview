@@ -29,9 +29,12 @@ enum NumType
     cX
 };
 
-extern "C" UHandle __cdecl DSNewHClr(size_t n);
-extern "C" ErrCode __cdecl DSCheckHandle(const void* h);
-extern "C" ErrCode __cdecl NumericArrayResize(int32_t typeCode,
+extern "C" UHandle __cdecl
+DSNewHClr(size_t n);
+extern "C" ErrCode __cdecl
+DSCheckHandle(const void* h);
+extern "C" ErrCode __cdecl
+NumericArrayResize(int32_t typeCode,
                                               int32_t numDims,
                                               UHandle* dataHP,
                                               size_t totalNewSize);

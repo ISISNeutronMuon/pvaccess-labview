@@ -1,8 +1,9 @@
 #pragma once
 
+#include <string>
+
 #include "lv_interop.hpp"
 #include <pvxs/client.h>
-#include <string>
 
 using LVTypeCode = uint8_t;
 

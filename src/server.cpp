@@ -6,14 +6,13 @@
 #include "pva_labview_export.h"
 #include "utils.hpp"
 
-using namespace pvxs;
-
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-createServer(server::Server** server, server::StaticSource** source)
+createServer(pvxs::server::Server** server, pvxs::server::StaticSource** source)
 {
     try {
-        *server = new server::Server(server::Server::fromEnv());
-        *source = new server::StaticSource(server::StaticSource::build());
+        *server = new pvxs::server::Server(pvxs::server::Server::fromEnv());
+        *source =
+          new pvxs::server::StaticSource(pvxs::server::StaticSource::build());
         (**server).addSource("labview", (**source).source());
     } catch (...) {
         return err2code();
@@ -22,7 +21,7 @@ createServer(server::Server** server, server::StaticSource** source)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-startServer(server::Server* server)
+startServer(pvxs::server::Server* server)
 {
     try {
         if (server == nullptr)
@@ -36,7 +35,7 @@ startServer(server::Server* server)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-stopServer(server::Server* server)
+stopServer(pvxs::server::Server* server)
 {
     try {
         if (server == nullptr)
@@ -50,7 +49,7 @@ stopServer(server::Server* server)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-closeServer(server::Server* server)
+closeServer(pvxs::server::Server* server)
 {
     try {
         if (server == nullptr)
@@ -65,13 +64,13 @@ closeServer(server::Server* server)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-addPV(server::StaticSource* source, char pv_name[], Value* value)
+addPV(pvxs::server::StaticSource* source, char pv_name[], pvxs::Value* value)
 {
     try {
         if (source == nullptr || value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
-        auto pv{ server::SharedPV::buildMailbox() };
+        auto pv{ pvxs::server::SharedPV::buildMailbox() };
         pv.open(*value);
         source->add(pv_name, pv);
         delete value;
@@ -81,8 +80,8 @@ addPV(server::StaticSource* source, char pv_name[], Value* value)
     return PVALVError::no_err;
 }
 
-server::SharedPV
-getPV(server::StaticSource* source, std::string pv_name)
+pvxs::server::SharedPV
+getPV(pvxs::server::StaticSource* source, std::string pv_name)
 {
     if (source == nullptr)
         throw labview::lv_err(PVALVError::null_ptr);
@@ -95,14 +94,14 @@ getPV(server::StaticSource* source, std::string pv_name)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-fetch(server::StaticSource* source, char pv_name[], Value** value)
+fetch(pvxs::server::StaticSource* source, char pv_name[], pvxs::Value** value)
 {
     try {
         if (source == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
         auto pv = getPV(source, pv_name);
-        *value = new Value{ pv.fetch() };
+        *value = new pvxs::Value{ pv.fetch() };
     } catch (...) {
         return err2code();
     }
@@ -110,7 +109,7 @@ fetch(server::StaticSource* source, char pv_name[], Value** value)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-post(server::StaticSource* source, char pv_name[], Value* value)
+post(pvxs::server::StaticSource* source, char pv_name[], pvxs::Value* value)
 {
     try {
         if (source == nullptr || value == nullptr)

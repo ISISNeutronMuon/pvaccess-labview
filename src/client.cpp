@@ -6,13 +6,11 @@
 #include "pva_labview_export.h"
 #include "utils.hpp"
 
-using namespace pvxs;
-
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-createClient(client::Context** client)
+createClient(pvxs::client::Context** client)
 {
     try {
-        *client = new client::Context(client::Context::fromEnv());
+        *client = new pvxs::client::Context(pvxs::client::Context::fromEnv());
     } catch (...) {
         return err2code();
     }
@@ -20,7 +18,7 @@ createClient(client::Context** client)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-closeClient(client::Context* client)
+closeClient(pvxs::client::Context* client)
 {
     try {
         if (client == nullptr)
@@ -33,13 +31,16 @@ closeClient(client::Context* client)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-get(client::Context* client, char pv_name[], double timeout, Value** value)
+get(pvxs::client::Context* client,
+    char pv_name[],
+    double timeout,
+    pvxs::Value** value)
 {
     try {
         if (client == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
-        *value = new Value{ client->get(pv_name).exec()->wait(timeout) };
+        *value = new pvxs::Value{ client->get(pv_name).exec()->wait(timeout) };
     } catch (...) {
         return err2code();
     }
@@ -47,7 +48,10 @@ get(client::Context* client, char pv_name[], double timeout, Value** value)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-put(client::Context* client, char pv_name[], double timeout, Value* value)
+put(pvxs::client::Context* client,
+    char pv_name[],
+    double timeout,
+    pvxs::Value* value)
 {
     try {
         if (client == nullptr || value == nullptr)
@@ -65,10 +69,10 @@ put(client::Context* client, char pv_name[], double timeout, Value* value)
 }
 
 typedef void* SubHandle;
-using SP = std::shared_ptr<client::Subscription>;
+using SP = std::shared_ptr<pvxs::client::Subscription>;
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-monitor(client::Context* client, char pv_name[], SubHandle* handle)
+monitor(pvxs::client::Context* client, char pv_name[], SubHandle* handle)
 {
     try {
         if (client == nullptr)
@@ -85,7 +89,7 @@ monitor(client::Context* client, char pv_name[], SubHandle* handle)
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 subscriptionNextValue(SubHandle handle,
                       double timeout,
-                      Value** value,
+                      pvxs::Value** value,
                       int16_t* timedOut)
 {
     try {
@@ -96,7 +100,7 @@ subscriptionNextValue(SubHandle handle,
         auto timeoutDuration = std::chrono::duration<double>(timeout);
         auto t0 = std::chrono::system_clock::now().time_since_epoch();
         auto t1 = t0;
-        Value update;
+        pvxs::Value update;
 
         while (!update && (t1 - t0 < timeoutDuration)) {
             t1 = std::chrono::system_clock::now().time_since_epoch();
@@ -104,7 +108,7 @@ subscriptionNextValue(SubHandle handle,
         }
         if (update) {
             *timedOut = 0;
-            *value = new Value{ update };
+            *value = new pvxs::Value{ update };
         } else {
             *timedOut = 1;
         }

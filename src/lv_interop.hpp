@@ -2,7 +2,6 @@
 
 #include <cstdint>
 #include <cstring>
-#include <iterator>
 #include <stdexcept>
 #include <string>
 
@@ -35,9 +34,9 @@ extern "C" ErrCode __cdecl
 DSCheckHandle(const void* h);
 extern "C" ErrCode __cdecl
 NumericArrayResize(int32_t typeCode,
-                                              int32_t numDims,
-                                              UHandle* dataHP,
-                                              size_t totalNewSize);
+                   int32_t numDims,
+                   UHandle* dataHP,
+                   size_t totalNewSize);
 
 template<typename T>
 NumType
@@ -108,6 +107,12 @@ class LStrHandle : public LVArrayBaseHandle<char, 1>
     {
         this->from(str);
     };
+
+    LStrHandle& operator=(const std::string& str)
+    {
+        this->from(str);
+        return *this;
+    }
 
     operator std::string() const
     {

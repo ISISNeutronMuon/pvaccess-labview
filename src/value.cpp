@@ -5,13 +5,34 @@
 #include "exceptions.hpp"
 #include "pva_labview_export.h"
 #include "utils.hpp"
+#include "value.hpp"
 
-struct Timestamp
+/* Convert format strings to form and precision.
+It ignores the minimum width before the decimal point.
+F4.2  -> { "Decimal", 2 }
+E10.3 -> { "Exponential", 3 }
+*/
+std::tuple<DisplayForm, int32_t>
+format_to_form(std::string format)
 {
-    int64_t secondsPastEpoch;
-    int32_t nanoseconds;
-    int32_t userTag;
-};
+    auto form = DisplayForm::Default;
+    switch (std::tolower(format[0])) {
+        case 'f':
+            form = DisplayForm::Decimal;
+            break;
+        case 'e':
+            form = DisplayForm::Exponential;
+            break;
+        default:
+            return { form, -1 };
+    }
+
+    // Find decimal point, then the precision is everything after that.
+    if (auto i = format.find_first_of("."))
+        return { form, std::stoi(format.substr(i + 1)) };
+
+    return { form, -1 };
+}
 
 pvxs::TypeCode
 convertTypeCode(LVTypeCode code)
@@ -136,6 +157,63 @@ readTimestamp(const pvxs::Value* value,
         *result = { timestamp.lookup("secondsPastEpoch").as<int64_t>(),
                     timestamp.lookup("nanoseconds").as<int32_t>(),
                     timestamp.lookup("userTag").as<int32_t>() };
+    } catch (...) {
+        return err2code();
+    }
+    return PVALVError::no_err;
+}
+
+extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
+readAlarmStatus(const pvxs::Value* value, int16_t* has_alarm, Alarm* result)
+{
+    *has_alarm = false;
+    try {
+        if (value == nullptr)
+            throw labview::lv_err(PVALVError::null_ptr);
+
+        if (auto alarm = (*value)["alarm"]) {
+            *has_alarm = true;
+            if (auto severity = alarm["severity"])
+                result->severity = severity.as<AlarmSeverity>();
+            if (auto status = alarm["status"])
+                result->status = status.as<AlarmStatus>();
+            if (auto message = alarm["message"])
+                result->message = message.as<std::string>();
+        }
+    } catch (...) {
+        return err2code();
+    }
+    return PVALVError::no_err;
+}
+
+extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
+readDisplayMetadata(const pvxs::Value* value,
+                    int16_t* has_display,
+                    Display* result)
+{
+    *has_display = false;
+    try {
+        if (value == nullptr)
+            throw labview::lv_err(PVALVError::null_ptr);
+
+        if (auto display = (*value)["display"]) {
+            *has_display = true;
+            if (auto limitLow = display["limitLow"])
+                result->limitLow = limitLow.as<double>();
+            if (auto limitHigh = display["limitHigh"])
+                result->limitHigh = limitHigh.as<double>();
+            if (auto description = display["description"])
+                result->description = description.as<std::string>();
+            if (auto units = display["units"])
+                result->units = units.as<std::string>();
+            if (auto form = display["form"]) {
+                result->form = form["index"].as<DisplayForm>();
+                result->precision = display["precision"].as<int32_t>();
+            } else if (auto format = display["format"]) {
+                std::tie(result->form, result->precision) =
+                  format_to_form(format.as<std::string>());
+            }
+        }
     } catch (...) {
         return err2code();
     }

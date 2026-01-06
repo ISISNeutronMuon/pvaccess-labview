@@ -8,7 +8,6 @@
 </Property>
 	<Item Name="Controls" Type="Folder">
 		<Item Name="Alarm Status.ctl" Type="VI" URL="../Alarm Status.ctl"/>
-		<Item Name="Control.ctl" Type="VI" URL="../Control.ctl"/>
 		<Item Name="Display Metadata.ctl" Type="VI" URL="../Display Metadata.ctl"/>
 		<Item Name="Type Code.ctl" Type="VI" URL="../Type Code.ctl"/>
 	</Item>

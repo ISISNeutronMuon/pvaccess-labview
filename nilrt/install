@@ -1,0 +1,31 @@
+#! /bin/sh -e
+
+EPICS_BASE_VERSION="7.0.9"
+PVXS_VERSION="1.5.0"
+
+opkg install \
+	packagegroup-core-buildessential \
+	perl-module-base \
+	perl-module-encode-encoding \
+	perl-module-extutils-parsexs \
+	perl-module-findbin \
+	perl-module-getopt-std \
+	perl-module-lib \
+	perl-module-pod-simple-html \
+	perl-module-pod-simple-methody \
+	perl-module-pod-simple-pullparser \
+	perl-module-pod-text \
+	perl-module-text-wrap \
+	cmake \
+	libevent-dev
+
+wget https://github.com/epics-base/epics-base/releases/download/R${EPICS_BASE_VERSION}/base-${EPICS_BASE_VERSION}.tar.gz -O epics-base.tar.gz
+tar -xzf epics-base.tar.gz --transform s/base-${EPICS_BASE_VERSION}/epics-base/
+rm epics-base.tar.gz
+make -C epics-base -j $(nproc)
+
+wget https://github.com/epics-base/pvxs/archive/refs/tags/${PVXS_VERSION}.tar.gz -O pvxs.tar.gz
+tar -xzf pvxs.tar.gz --transform s/pvxs-${PVXS_VERSION}/pvxs/
+rm pvxs.tar.gz
+echo 'EPICS_BASE=$(TOP)/../epics-base' > ./pvxs/configure/RELEASE.local
+make -C pvxs -j $(nproc)

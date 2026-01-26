@@ -17,7 +17,6 @@ if(MSVC)
     set(EPICS_HOST_ARCH "windows-x64")
   endif()
 else()
-  set(CMAKE_CXX_VISIBILITY_PRESET "hidden")
   set(EPICS_HOST_ARCH "linux-x86_64")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D'__cdecl=__attribute__((__cdecl__))'")
 endif()
@@ -43,9 +42,7 @@ set(PVXS_INCLUDE_DIRS "${PVXS_ROOT}/include")
 set(PVXS_LIB "${PVXS_ROOT}/lib/${EPICS_HOST_ARCH}")
 set(EVENT_LIB "${PVXS_ROOT}/bundle/O.${EPICS_HOST_ARCH}/lib")
 
-add_library(pva_labview SHARED)
-
-target_sources(pva_labview PUBLIC
+add_library(pva_labview SHARED
   src/lv_interop.cpp
   src/exceptions.cpp
   src/server.cpp
@@ -53,7 +50,7 @@ target_sources(pva_labview PUBLIC
   src/value.cpp
 )
 if(WIN32)
-  target_sources(pva_labview PUBLIC src/dllmain.cpp)
+  target_sources(pva_labview PUBLIC "${CMAKE_SOURCE_DIR}/src/dllmain.cpp")
 endif()
 
 target_compile_features(pva_labview PRIVATE cxx_std_14)
@@ -71,16 +68,15 @@ target_include_directories(pva_labview PRIVATE
   "${EPICS_BASE_INCLUDE_DIRS}"
   "${PVXS_INCLUDE_DIRS}"
 )
-if(MSVC)
-  target_include_directories(pva_labview PRIVATE
-    "${EPICS_BASE_INCLUDE_DIRS}/compiler/msvc"
-    "${EPICS_BASE_INCLUDE_DIRS}/os/win32"
-  )
+if(WIN32)
+  target_include_directories(pva_labview PRIVATE "${EPICS_BASE_INCLUDE_DIRS}/os/win32")
 else()
-  target_include_directories(pva_labview PRIVATE
-    "${EPICS_BASE_INCLUDE_DIRS}/compiler/gcc"
-    "${EPICS_BASE_INCLUDE_DIRS}/os/Linux"
-  )
+  target_include_directories(pva_labview PRIVATE "${EPICS_BASE_INCLUDE_DIRS}/os/Linux")
+endif()
+if(MSVC)
+  target_include_directories(pva_labview PRIVATE "${EPICS_BASE_INCLUDE_DIRS}/compiler/msvc")
+else()
+  target_include_directories(pva_labview PRIVATE "${EPICS_BASE_INCLUDE_DIRS}/compiler/gcc")
 endif()
 
 # Linker
@@ -94,10 +90,13 @@ if(MSVC)
   # Module labview.lib is not compatible with the safe exception handling feature
   target_link_options(pva_labview PRIVATE "/SAFESEH:NO")
 else()
+  target_link_directories(pva_labview PRIVATE
+    "${PVXS_LIB}"
+    "${EPICS_LIB}"
+  )
   target_link_libraries(pva_labview PRIVATE
-    "${PVXS_LIB}/libpvxs.so"
-    "${EPICS_LIB}/libCom.so"
-    "${EVENT_LIB}/libevent_core.so"
+    "libCom.so"
+    "libpvxs.so"
   )
 endif()
 

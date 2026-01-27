@@ -2,21 +2,11 @@
 
 Building the library for NI Linux RT targets.
 
-Tested with NILRT 2025Q4.
-
 ## Development
 
-- Clone this repo to the target
+- Build the package
   ```bash
-  git clone https://github.com/ISISNeutronMuon/pvaccess-labview.git
-  ```
-- Install and build dependencies
-  ```bash
-  nilrt/install
-  ```
-- Build this library and package it into an IPK
-  ```bash
-  nilrt/build-package
+  docker build -f nilrt/Dockerfile --output . .
   ```
 
 ## Installation

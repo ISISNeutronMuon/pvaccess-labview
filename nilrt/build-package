@@ -2,21 +2,21 @@
 
 PACKAGE_VERSION="0.0.1"
 PACKAGE_DIR="/tmp/pvaccess-labview"
+BUILD_DIR="./build"
 
-cmake -B ./build
-cmake --build ./build
+cmake -B ${BUILD_DIR}
+cmake --build ${BUILD_DIR}
 
-rm -rf $PACKAGE_DIR
-mkdir -p $PACKAGE_DIR/usr/lib
-cp -a ./epics-base/lib/linux-x86_64/libCom.so* \
-	./pvxs/lib/linux-x86_64/libpvxs.so* \
-	./build/libpva_labview.so \
-	$PACKAGE_DIR/usr/lib/
+rm -rf ${PACKAGE_DIR}
+mkdir -p ${PACKAGE_DIR}/usr/lib
+cp -a ${EPICS_BASE}/lib/linux-x86_64/libCom.so* \
+	${PVXS}/lib/linux-x86_64/libpvxs.so* \
+	${BUILD_DIR}/libpva_labview.so \
+	${PACKAGE_DIR}/usr/lib/
 
-dirname -- "$0";
-mkdir -p $PACKAGE_DIR/CONTROL
-sed s/0.0.0/${PACKAGE_VERSION}/ nilrt/control > $PACKAGE_DIR/CONTROL/control
+mkdir -p ${PACKAGE_DIR}/CONTROL
+sed s/0.0.0/${PACKAGE_VERSION}/ nilrt/control > ${PACKAGE_DIR}/CONTROL/control
 
-chmod -R 755 $PACKAGE_DIR
+chmod -R 755 ${PACKAGE_DIR}
 
-opkg-build $PACKAGE_DIR
+opkg-build ${PACKAGE_DIR}

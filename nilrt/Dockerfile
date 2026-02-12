@@ -16,10 +16,12 @@ RUN apt-get update && \
 ADD --chmod=a+x https://download.ni.com/support/softlib/labview/labview_rt/2023Q1/LinuxToolchains/linux/oecore-x86_64-core2-64-toolchain-9.2.sh .
 RUN ./oecore-x86_64-core2-64-toolchain-9.2.sh -y
 
-ADD https://github.com/epics-base/epics-base.git#7.0 ${EPICS_BASE}
+ARG EPICS_BASE_VERSION=7.0
+ADD https://github.com/epics-base/epics-base.git#${EPICS_BASE_VERSION} ${EPICS_BASE}
 RUN make -C ${EPICS_BASE} -j $(nproc) && make -C ${EPICS_BASE} clean
 
-ADD https://github.com/epics-base/pvxs.git#1.4.1 ${PVXS}
+ARG PVXS_VERSION=1.4.1
+ADD https://github.com/epics-base/pvxs.git#${PVXS_VERSION} ${PVXS}
 RUN echo 'EPICS_BASE=/epics/epics-base' > ${PVXS}/configure/RELEASE.local
 RUN make -C ${PVXS} -j $(nproc) && make -C ${PVXS} clean
 
@@ -30,8 +32,9 @@ WORKDIR ${EPICS_ROOT}
 
 RUN --mount=source=CMakeLists.txt,target=CMakeLists.txt \
 	--mount=source=src,target=src \
-	--mount=source=nilrt,target=nilrt \
-	nilrt/build-package
+	cmake -B ./build && cmake --build ./build
+RUN --mount=source=nilrt/build-package,target=build-package \
+	./build-package
 
 FROM scratch
-COPY --from=build /epics/pvalabview_*.ipk /
+COPY --from=build /epics/*.ipk /

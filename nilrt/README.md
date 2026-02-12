@@ -13,5 +13,5 @@ Building the library for NI Linux RT targets.
 
 - Copy the `.ipk` file to the target and install it
   ```bash
-  opkg install pvalabview_x.x.x_x64.ipk
+  opkg install pvalv_x.x.x_x64.ipk
   ```

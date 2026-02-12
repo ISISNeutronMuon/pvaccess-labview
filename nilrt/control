@@ -1,7 +1,0 @@
-Package: pvalabview
-Version: 0.0.0
-Architecture: x64
-Maintainer: "Ross Titmarsh" <ross.titmarsh@stfc.ac.uk>
-Description: A PVAccess library for LabVIEW
-Priority: optional
-Section: libs

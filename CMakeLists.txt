@@ -4,7 +4,11 @@ include(GenerateExportHeader)
 
 cmake_policy(SET CMP0091 NEW)
 
-project(pva_labview C CXX)
+project(pva_labview
+  VERSION 0.0.1
+  DESCRIPTION "A PVAccess library for LabVIEW"
+  LANGUAGES C CXX
+)
 
 if(MSVC)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4267 /wd4244")
@@ -55,8 +59,9 @@ endif()
 
 target_compile_features(pva_labview PRIVATE cxx_std_14)
 
-set_target_properties(pva_labview
-    PROPERTIES
+set_target_properties(pva_labview PROPERTIES
+  VERSION ${PROJECT_VERSION}
+  SOVERSION ${PROJECT_VERSION_MAJOR}
     RUNTIME_OUTPUT_DIRECTORY "../labview/Libraries/${EPICS_HOST_ARCH}"
     RUNTIME_OUTPUT_DIRECTORY_RELEASE "../labview/Libraries/${EPICS_HOST_ARCH}"
 )
@@ -101,3 +106,15 @@ else()
 endif()
 
 GENERATE_EXPORT_HEADER(pva_labview)
+
+if (LINUX)
+  file(WRITE ${pva_labview_BINARY_DIR}/control "\
+Package: pvalv
+Version: ${PROJECT_VERSION}
+Architecture: x64
+Maintainer: Ross Titmarsh <ross.titmarsh@stfc.ac.uk>
+Description: ${PROJECT_DESCRIPTION}
+Priority: optional
+Section: libs
+")
+endif()

@@ -1,12 +1,13 @@
 #! /bin/sh -e
 
+BUILD_DIR="build/nilrt"
 PACKAGE_DIR=$(mktemp -d)
 
 mkdir -p ${PACKAGE_DIR}/CONTROL
-cp build/control ${PACKAGE_DIR}/CONTROL/control
+cp ${BUILD_DIR}/control ${PACKAGE_DIR}/CONTROL/control
 
 mkdir -p ${PACKAGE_DIR}/usr/lib
-cp -a build/libpva_labview.so* \
+cp -a ${BUILD_DIR}/libpva_labview.so* \
 	${EPICS_BASE}/lib/linux-x86_64/libCom.so* \
 	${PVXS}/lib/linux-x86_64/libpvxs.so* \
 	${PACKAGE_DIR}/usr/lib/

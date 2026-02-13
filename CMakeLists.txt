@@ -62,8 +62,8 @@ target_compile_features(pva_labview PRIVATE cxx_std_14)
 set_target_properties(pva_labview PROPERTIES
   VERSION ${PROJECT_VERSION}
   SOVERSION ${PROJECT_VERSION_MAJOR}
-    RUNTIME_OUTPUT_DIRECTORY "../labview/Libraries/${EPICS_HOST_ARCH}"
-    RUNTIME_OUTPUT_DIRECTORY_RELEASE "../labview/Libraries/${EPICS_HOST_ARCH}"
+  RUNTIME_OUTPUT_DIRECTORY "../../labview/libraries/${EPICS_HOST_ARCH}"
+  RUNTIME_OUTPUT_DIRECTORY_RELEASE "../../labview/libraries/${EPICS_HOST_ARCH}"
 )
 
 # Compiler

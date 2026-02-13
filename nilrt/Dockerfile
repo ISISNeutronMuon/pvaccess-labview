@@ -32,7 +32,7 @@ WORKDIR ${EPICS_ROOT}
 
 RUN --mount=source=CMakeLists.txt,target=CMakeLists.txt \
 	--mount=source=src,target=src \
-	cmake -B ./build && cmake --build ./build
+	cmake -B ./build/nilrt && cmake --build ./build/nilrt
 RUN --mount=source=nilrt/build-package,target=build-package \
 	./build-package
 

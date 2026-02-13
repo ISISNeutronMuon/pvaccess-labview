@@ -27,13 +27,15 @@ An [EPICS PVAccess](https://docs.epics-controls.org/en/latest/pv-access/protocol
 
 - Build this library
 
-	- Windows
-		```
-		cmake -G "Visual Studio 17 2022" -A x64 -B .\build
-		cmake --build .\build --config Release
-		```
-	- Linux
-		```sh
-		cmake -B ./build
-		cmake --build ./build
-		```
+  - Windows
+    ```
+    cmake -G "Visual Studio 17 2022" -A x64 -B .\build\windows-x64\
+    cmake --build .\build\windows-x64\ --config Release
+    ```
+  - Linux
+    ```sh
+    cmake -B build/linux-x86_64/
+    cmake --build build/linux-x86_64/ \
+    && mkdir -p labview/libraries/linux-x86_64/ \
+    && cp build/linux-x86_64/libpva_labview.so "$_"
+    ```

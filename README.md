@@ -6,6 +6,12 @@ An [EPICS PVAccess](https://docs.epics-controls.org/en/latest/pv-access/protocol
 
 ![image](https://github.com/user-attachments/assets/87c6365a-914c-402b-8513-65aa0285e8db)
 
+## Requirements
+
+The VIPM package is compatible with LabVIEW 2020 or above.
+
+Real-time targets running NI Linux RT 2023 Q1 or above should be compatible.
+
 ## Installation
 
 ### LabVIEW library (VIPM)

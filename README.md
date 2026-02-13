@@ -6,7 +6,21 @@ An [EPICS PVAccess](https://docs.epics-controls.org/en/latest/pv-access/protocol
 
 ![image](https://github.com/user-attachments/assets/87c6365a-914c-402b-8513-65aa0285e8db)
 
-## Building
+## Installation
+
+### LabVIEW library (VIPM)
+
+Download the latest `.vip` file from [releases](https://github.com/ISISNeutronMuon/pvaccess-labview/releases) and open it with VIPM.
+
+### NI Linux Real-Time
+
+SSH into the target and run this command, replace `x.x.x`with the version of the VIP file you have installed.
+
+```bash
+opkg install https://github.com/ISISNeutronMuon/pvaccess-labview/releases/download/vx.x.x/pvalv_x.x.x_x64.ipk
+```
+
+## Development
 
 - Clone [EPICS Base](https://github.com/epics-base/epics-base/) to `./epics-base` and build it
 

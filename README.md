@@ -4,7 +4,7 @@ An [EPICS PVAccess](https://docs.epics-controls.org/en/latest/pv-access/protocol
 
 ⚠️ This software is in the alpha stage of development and does not have a stable interface.
 
-![image](https://github.com/user-attachments/assets/1d8dea33-e0f0-4064-a527-22c7b9b64251)
+![image](https://github.com/user-attachments/assets/87c6365a-914c-402b-8513-65aa0285e8db)
 
 ## Building
 

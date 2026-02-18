@@ -1,7 +1,7 @@
-<VI_Package_Builder_Settings Version="2020.1" Created_Date="2025-04-08 18:46:00" Modified_Date="2026-02-13 16:42:37" Creator="ross titmarsh" Comments="" ID="2aa3b0876d6c99ad141a3511d814f0b5">
+<VI_Package_Builder_Settings Version="2020.1" Created_Date="2025-04-08 18:46:00" Modified_Date="2026-02-18 12:10:43" Creator="ross titmarsh" Comments="" ID="7c5c68fe98cb56652dd465a31db19b73">
   <Library_General_Settings>
     <Package_File_Name>epics_pvaccess</Package_File_Name>
-    <Library_Version>0.0.1.2</Library_Version>
+    <Library_Version>0.1.0.3</Library_Version>
     <Auto_Increment_Version>false</Auto_Increment_Version>
     <Library_Source_Folder>.</Library_Source_Folder>
     <Library_Output_Folder>..\..</Library_Output_Folder>
@@ -32,14 +32,16 @@
       <Pre-Uninstall_VI/>
       <Post-Uninstall_VI/>
     </Custom_Action_VIs>
-    <VI_Package_Configuration_File>.vipc</VI_Package_Configuration_File>
+    <VI_Package_Configuration_File>pvaccess.vipc</VI_Package_Configuration_File>
     <Description>
       <One_Line_Description_Summary>An EPICS PVAccess library for LabVIEW</One_Line_Description_Summary>
       <Description/>
       <Copyright/>
       <Packager>Ross Titmarsh</Packager>
       <URL>https://github.com/ISISNeutronMuon/pvaccess-labview</URL>
-      <Release_Notes>Alpha release</Release_Notes>
+      <Release_Notes>- Added timestamp terminal to subscription next value
+- Fixed subscription next value memory leak
+</Release_Notes>
     </Description>
     <Destinations>
       <Toolkit_VIs>
@@ -450,7 +452,7 @@
         <Path>source\Value\Type Code.ctl</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>6110433810F92999547231763E6722B9</GUID>
+      <GUID>AB906E71BAFAD62396F15C8F824F9A07</GUID>
     </Functions_Palette_Data>
   </Library_Palette_Definition>
 </VI_Package_Builder_Settings>

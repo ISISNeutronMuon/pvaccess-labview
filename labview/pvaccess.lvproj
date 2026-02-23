@@ -20,6 +20,9 @@
 			<Item Name="Probe.vi" Type="VI" URL="../examples/Probe.vi"/>
 			<Item Name="Server.vi" Type="VI" URL="../examples/Server.vi"/>
 		</Item>
+		<Item Name="Packaging" Type="Folder">
+			<Item Name="pvaccess.vipb" Type="Document" URL="../pvaccess.vipb"/>
+		</Item>
 		<Item Name="Test" Type="Folder">
 			<Item Name="Generate PV Names.vi" Type="VI" URL="../source/Generate PV Names.vi"/>
 			<Item Name="Generate Value.vi" Type="VI" URL="../source/Generate Value.vi"/>
@@ -29,8 +32,6 @@
 		<Item Name="Utilities" Type="Folder">
 			<Item Name="Get Library Path.vi" Type="VI" URL="../source/Get Library Path.vi"/>
 		</Item>
-		<Item Name=".vipb" Type="Document" URL="../.vipb"/>
-		<Item Name=".vipc" Type="Document" URL="../.vipc"/>
 		<Item Name="Client.lvlib" Type="Library" URL="../source/Client/Client.lvlib"/>
 		<Item Name="Server.lvlib" Type="Library" URL="../source/Server/Server.lvlib"/>
 		<Item Name="Value.lvlib" Type="Library" URL="../source/Value/Value.lvlib"/>

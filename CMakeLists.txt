@@ -86,7 +86,14 @@ endif()
 
 # Linker
 if(MSVC)
+  find_package(PThreads4W CONFIG REQUIRED)
   target_link_libraries(pva_labview PRIVATE
+    PThreads4W::PThreads4W
+    Ws2_32.lib
+    Netapi32.lib
+    Iphlpapi.lib
+    DbgHelp.lib
+    BCrypt.lib
     "${LABVIEW_LIB}/labview.lib"
     "${EPICS_LIB}/Com.lib"
     "${EVENT_LIB}/event_core.lib"
@@ -94,6 +101,10 @@ if(MSVC)
   )
   # Module labview.lib is not compatible with the safe exception handling feature
   target_link_options(pva_labview PRIVATE "/SAFESEH:NO")
+  # Fixes static linking
+  set_target_properties(pva_labview PROPERTIES
+    COMPILE_OPTIONS "$<$<CONFIG:Debug>:/MTd>$<$<CONFIG:Release>:/MT>"
+  )
 else()
   target_link_directories(pva_labview PRIVATE
     "${PVXS_LIB}"

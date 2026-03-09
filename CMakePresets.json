@@ -52,5 +52,11 @@
 			"name": "nilrt",
 			"configurePreset": "nilrt"
 		}
+	],
+	"packagePresets": [
+		{
+			"name": "nilrt",
+			"configurePreset": "nilrt"
+		}
 	]
 }

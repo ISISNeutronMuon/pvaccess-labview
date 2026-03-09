@@ -92,7 +92,15 @@ opkg install pva_labview_<VERSION>.ipk
 - Linux
   ```sh
   cmake --preset=linux-x86_64
-  cmake --build --preset=linux-x86_64 \
-  && mkdir -p labview/libraries/linux-x86_64/ \
-  && cp build/linux-x86_64/libpva_labview.so "$_"
+  cmake --build --preset=linux-x86_64
   ```
+- NI Linux RT cross-compilation
+  ```sh
+  cmake --preset=nilrt
+  cmake --build --preset=nilrt
+  ```
+
+### Packaging NILRT Package
+```sh
+cpack --preset=nilrt
+```

@@ -89,14 +89,7 @@ endif()
 
 GENERATE_EXPORT_HEADER(pva_labview)
 
-if (LINUX)
-  file(WRITE ${pva_labview_BINARY_DIR}/control "\
-Package: pvalv
-Version: ${PROJECT_VERSION}
-Architecture: x64
-Maintainer: Ross Titmarsh <ross.titmarsh@stfc.ac.uk>
-Description: ${PROJECT_DESCRIPTION}
-Priority: optional
-Section: libs
-")
+if(NILRT)
+  include(Installing)
+  include(Packing)
 endif()

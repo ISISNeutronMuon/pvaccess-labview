@@ -38,16 +38,13 @@ EPICS_BASE=${EPICS_BASE}
 EOF
 RUN make -C ${PVXS} -j $(nproc) && make -C ${PVXS} clean
 
-ADD https://git.yoctoproject.org/opkg-utils.git#0.7.0 /opkg-utils
-RUN make -C /opkg-utils install-utils
-
 WORKDIR ${EPICS_ROOT}
 
 RUN --mount=source=CMakeLists.txt,target=CMakeLists.txt \
+	--mount=source=CMakePresets.json,target=CMakePresets.json \
+	--mount=source=cmake,target=cmake \
 	--mount=source=src,target=src \
-	cmake -B ./build/nilrt && cmake --build ./build/nilrt
-RUN --mount=source=nilrt/build-package,target=build-package \
-	./build-package
+	cmake --preset=nilrt && cmake --build --preset=nilrt && cpack --preset=nilrt
 
 FROM scratch
 COPY --from=build /epics/build/nilrt/*.ipk /

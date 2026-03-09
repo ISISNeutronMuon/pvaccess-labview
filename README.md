@@ -20,18 +20,49 @@ Download the latest `.vip` file from [releases](https://github.com/ISISNeutronMu
 
 ### NI Linux Real-Time
 
-SSH into the target and run this command, replace `x.x.x`with the version of the VIP file you have installed.
+SSH into the target and run this command, replace `<VERSION>`with the version of the VIP file you have installed.
 
 ```bash
-opkg install https://github.com/ISISNeutronMuon/pvaccess-labview/releases/download/vx.x.x/pvalv_x.x.x_x64.ipk
+wget https://github.com/ISISNeutronMuon/pvaccess-labview/releases/download/v<VERSION>/pva_labview_<VERSION>.ipk
+opkg install pva_labview_<VERSION>.ipk
 ```
 
 ## Development
+
+### Prerequisits
+
+#### Windows
+
+- Install the [Microsoft C++ Build Tools](https://learn.microsoft.com/en-us/cpp/build/building-on-the-command-line)
+
+- Install [Chocolatey](Chocolatey)
+
+- Install Make, CMake and Perl
+  ```ps1
+  choco install make cmake strawberryperl
+  ```
+
+- Launch the "Developer Command Prompt for VS", not PowerShell, and run the subsequent commands from it
+
+- Activate the [64-bit environment](https://learn.microsoft.com/en-us/cpp/build/building-on-the-command-line#developer_command_file_locations)
+
+#### Linux
+
+- Install Make, CMake, Perl and libevent using your distribution's package manager
+  ```sh
+  sudo apt install make cmake perl libevent-dev
+  ```
+
+### Building dependencies
 
 - Clone [EPICS Base](https://github.com/epics-base/epics-base/) to `./epics-base` and build it
 
   ```sh
   git clone https://github.com/epics-base/epics-base.git
+  cat <<EOF > epics-base/configure/CONFIG_SITE.local
+  SHARED_LIBRARIES=NO
+  STATIC_BUILD=YES
+  EOF
   make -C epics-base
   ```
 
@@ -39,23 +70,29 @@ opkg install https://github.com/ISISNeutronMuon/pvaccess-labview/releases/downlo
 
   ```sh
   git clone --recurse-submodules https://github.com/epics-base/pvxs.git
-  echo 'EPICS_BASE=$(TOP)/../epics-base' > ./pvxs/configure/RELEASE.local
+  cat <<EOF > pvxs/configure/CONFIG_SITE.local
+  SHARED_LIBRARIES=NO
+  STATIC_BUILD=YES
+  EOF
+  cat <<EOF > pvxs/configure/RELEASE.local
+  EPICS_BASE=\$(TOP)/../epics-base
+  EOF
   make -C pvxs/bundle libevent
   make -C pvxs
   ```
   See the [PVXS docs](https://epics-base.github.io/pvxs/building.html) for more details
 
-- Build this library
+### Building this library
 
-  - Windows
-    ```
-    cmake -G "Visual Studio 17 2022" -A x64 -B .\build\windows-x64\
-    cmake --build .\build\windows-x64\ --config Release
-    ```
-  - Linux
-    ```sh
-    cmake -B build/linux-x86_64/
-    cmake --build build/linux-x86_64/ \
-    && mkdir -p labview/libraries/linux-x86_64/ \
-    && cp build/linux-x86_64/libpva_labview.so "$_"
-    ```
+- Windows
+  ```ps1
+  cmake --preset=windows-x64
+  cmake --build --preset=windows-x64
+  ```
+- Linux
+  ```sh
+  cmake --preset=linux-x86_64
+  cmake --build --preset=linux-x86_64 \
+  && mkdir -p labview/libraries/linux-x86_64/ \
+  && cp build/linux-x86_64/libpva_labview.so "$_"
+  ```

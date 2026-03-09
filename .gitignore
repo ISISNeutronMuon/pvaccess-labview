@@ -2,5 +2,6 @@
 epics-base/
 pvxs/
 
-# CMake output
+# CMake
+CMakeUserPresets.json
 build/

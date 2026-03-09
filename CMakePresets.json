@@ -1,0 +1,56 @@
+{
+	"version": 6,
+	"configurePresets": [
+		{
+			"name": "windows-x64",
+			"generator": "Visual Studio 18 2026",
+			"architecture": "x64",
+			"binaryDir": "${sourceDir}/build/windows-x64",
+			"toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+			"environment": {
+				"EPICS_HOST_ARCH": "windows-x64",
+				"LABVIEW_LIB": "$env{ProgramFiles}/National Instruments/LabVIEW 2025/cintools"
+			}
+		},
+		{
+			"name": "windows-x64-mingw",
+			"generator": "MinGW Makefiles",
+			"binaryDir": "${sourceDir}/build/windows-x64-mingw",
+			"toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+			"environment": {
+				"EPICS_HOST_ARCH": "windows-x64-mingw"
+			}
+		},
+		{
+			"name": "linux-x86_64",
+			"binaryDir": "${sourceDir}/build/linux-x86_64",
+			"environment": {
+				"EPICS_HOST_ARCH": "linux-x86_64"
+			}
+		},
+		{
+			"name": "nilrt",
+			"inherits": "linux-x86_64",
+			"binaryDir": "${sourceDir}/build/nilrt",
+			"toolchainFile": "cmake/nilrt-toolchain.cmake",
+			"cacheVariables": {
+				"NILRT": true
+			}
+		}
+	],
+	"buildPresets": [
+		{
+			"name": "windows-x64",
+			"configurePreset": "windows-x64",
+			"configuration": "Release"
+		},
+		{
+			"name": "linux-x86_64",
+			"configurePreset": "linux-x86_64"
+		},
+		{
+			"name": "nilrt",
+			"configurePreset": "nilrt"
+		}
+	]
+}

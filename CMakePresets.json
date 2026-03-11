@@ -27,11 +27,13 @@
 		},
 		{
 			"name": "nilrt",
-			"inherits": "linux-x86_64",
 			"binaryDir": "${sourceDir}/build/nilrt",
-			"toolchainFile": "cmake/nilrt-toolchain.cmake",
+			"environment": {
+				"EPICS_HOST_ARCH": "linux-x86_64"
+			},
 			"cacheVariables": {
-				"NILRT": true
+				"NILRT": true,
+				"CMAKE_LIBRARY_OUTPUT_DIRECTORY": "${sourceDir}"
 			}
 		}
 	],

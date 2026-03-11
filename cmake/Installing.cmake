@@ -1,1 +1,2 @@
 install(TARGETS ${PROJECT_NAME})
+install(IMPORTED_RUNTIME_ARTIFACTS Com pvxs)

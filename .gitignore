@@ -1,7 +1,3 @@
-# Dependencies
-epics-base/
-pvxs/
-
 # CMake
 CMakeUserPresets.json
 build/

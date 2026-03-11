@@ -55,32 +55,36 @@ opkg install pva_labview_<VERSION>.ipk
 
 ### Building dependencies
 
-- Clone [EPICS Base](https://github.com/epics-base/epics-base/) to `./epics-base` and build it
+#### Windows
 
-  ```sh
-  git clone https://github.com/epics-base/epics-base.git
-  cat <<EOF > epics-base/configure/CONFIG_SITE.local
-  SHARED_LIBRARIES=NO
-  STATIC_BUILD=YES
-  EOF
+- Build EPICS Base
+  ```bat
+  set EPICS_HOST_ARCH=windows-x64-static
   make -C epics-base
   ```
 
-- Clone [PVXS](https://github.com/epics-base/pvxs/) to `./pvxs` and build it
-
-  ```sh
-  git clone --recurse-submodules https://github.com/epics-base/pvxs.git
-  cat <<EOF > pvxs/configure/CONFIG_SITE.local
-  SHARED_LIBRARIES=NO
-  STATIC_BUILD=YES
-  EOF
-  cat <<EOF > pvxs/configure/RELEASE.local
-  EPICS_BASE=\$(TOP)/../epics-base
-  EOF
+- Build PVXS
+  ```bat
+  echo EPICS_BASE = $(TOP)/../epics-base > pvxs/configure/RELEASE.local
   make -C pvxs/bundle libevent
   make -C pvxs
   ```
   See the [PVXS docs](https://epics-base.github.io/pvxs/building.html) for more details
+
+#### Linux
+
+- Build EPICS Base
+  ```sh
+  make -C epics-base
+  ```
+
+- Build PVXS
+  ```sh
+  cat <<EOF > pvxs/configure/RELEASE.local
+  EPICS_BASE = \$(TOP)/../epics-base
+  EOF
+  make -C pvxs
+  ```
 
 ### Building this library
 
@@ -94,13 +98,11 @@ opkg install pva_labview_<VERSION>.ipk
   cmake --preset=linux-x86_64
   cmake --build --preset=linux-x86_64
   ```
-- NI Linux RT cross-compilation
-  ```sh
-  cmake --preset=nilrt
-  cmake --build --preset=nilrt
-  ```
 
-### Packaging NILRT Package
+### Packaging NI Linux RT Package
+These command must be run on an NI Linux RT target
 ```sh
+cmake --preset=nilrt
+cmake --build --preset=nilrt
 cpack --preset=nilrt
 ```

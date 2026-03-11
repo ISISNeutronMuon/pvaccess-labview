@@ -1,0 +1,6 @@
+[submodule "epics-base"]
+	path = epics-base
+	url = https://github.com/epics-base/epics-base.git
+[submodule "pvxs"]
+	path = pvxs
+	url = https://github.com/epics-base/pvxs.git

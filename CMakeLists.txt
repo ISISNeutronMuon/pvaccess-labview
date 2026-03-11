@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12.4)
+cmake_minimum_required(VERSION 3.14)
 
 include(GenerateExportHeader)
 
@@ -24,7 +24,7 @@ else()
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D'__cdecl=__attribute__((__cdecl__))'")
 endif()
 
-add_library(pva_labview SHARED
+add_library(pva_labview MODULE
   src/lv_interop.cpp
   src/exceptions.cpp
   src/server.cpp
@@ -36,21 +36,6 @@ if(WIN32)
 endif()
 
 target_compile_features(pva_labview PRIVATE cxx_std_14)
-
-set_target_properties(pva_labview PROPERTIES
-  VERSION ${PROJECT_VERSION}
-  SOVERSION ${PROJECT_VERSION_MAJOR}
-)
-if(WIN32)
-  set_target_properties(pva_labview PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/labview/libraries/$ENV{EPICS_HOST_ARCH}"
-    RUNTIME_OUTPUT_DIRECTORY_RELEASE "${CMAKE_SOURCE_DIR}/labview/libraries/$ENV{EPICS_HOST_ARCH}"
-  )
-elseif(LINUX AND NOT NILRT)
-  set_target_properties(pva_labview PROPERTIES
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/labview/libraries/$ENV{EPICS_HOST_ARCH}"
-  )
-endif()
 
 # Compiler
 target_include_directories(pva_labview PRIVATE
@@ -81,7 +66,6 @@ if(WIN32)
   target_link_options(pva_labview PRIVATE "/SAFESEH:NO")
 else()
   target_link_libraries(pva_labview
-    -static-libgcc
     Com
     pvxs
   )
@@ -89,7 +73,16 @@ endif()
 
 GENERATE_EXPORT_HEADER(pva_labview)
 
-if(NILRT)
+if(LINUX AND NOT NILRT)
+  add_custom_command(TARGET pva_labview POST_BUILD 
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      $<TARGET_FILE:Com>
+      $<TARGET_FILE_DIR:pva_labview>/$<TARGET_SONAME_FILE_NAME:Com>
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      $<TARGET_FILE:pvxs>
+      $<TARGET_FILE_DIR:pva_labview>/$<TARGET_SONAME_FILE_NAME:pvxs>
+  )
+elseif(NILRT)
   include(Installing)
   include(Packing)
 endif()

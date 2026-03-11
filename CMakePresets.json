@@ -8,17 +8,11 @@
 			"binaryDir": "${sourceDir}/build/windows-x64",
 			"toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
 			"environment": {
-				"EPICS_HOST_ARCH": "windows-x64",
+				"EPICS_HOST_ARCH": "windows-x64-static",
 				"LABVIEW_LIB": "$env{ProgramFiles}/National Instruments/LabVIEW 2025/cintools"
-			}
-		},
-		{
-			"name": "windows-x64-mingw",
-			"generator": "MinGW Makefiles",
-			"binaryDir": "${sourceDir}/build/windows-x64-mingw",
-			"toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-			"environment": {
-				"EPICS_HOST_ARCH": "windows-x64-mingw"
+			},
+			"cacheVariables": {
+				"CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE": "${sourceDir}/labview/libraries/windows-x64"
 			}
 		},
 		{
@@ -26,6 +20,9 @@
 			"binaryDir": "${sourceDir}/build/linux-x86_64",
 			"environment": {
 				"EPICS_HOST_ARCH": "linux-x86_64"
+			},
+			"cacheVariables": {
+				"CMAKE_LIBRARY_OUTPUT_DIRECTORY": "${sourceDir}/labview/libraries/linux-x86_64"
 			}
 		},
 		{

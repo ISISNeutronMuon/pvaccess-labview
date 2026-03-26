@@ -7,13 +7,16 @@
 
 </Property>
 	<Item Name="Controls" Type="Folder">
+		<Item Name="Alarm Limits.ctl" Type="VI" URL="../Alarm Limits.ctl"/>
+		<Item Name="Alarm Severity.ctl" Type="VI" URL="../Alarm Severity.ctl"/>
 		<Item Name="Alarm Status.ctl" Type="VI" URL="../Alarm Status.ctl"/>
+		<Item Name="Control Metadata.ctl" Type="VI" URL="../Control Metadata.ctl"/>
 		<Item Name="Display Metadata.ctl" Type="VI" URL="../Display Metadata.ctl"/>
 		<Item Name="Type Code.ctl" Type="VI" URL="../Type Code.ctl"/>
+		<Item Name="Value Fields.ctl" Type="VI" URL="../Value Fields.ctl"/>
 	</Item>
 	<Item Name="Variant Utilities" Type="Folder">
 		<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
-		<Item Name="Default Variant.vi" Type="VI" URL="../Default Variant.vi"/>
 		<Item Name="Get Type Code (Internal).vim" Type="VI" URL="../Get Type Code (Internal).vim"/>
 		<Item Name="Get Type Code (Variant).vi" Type="VI" URL="../Get Type Code (Variant).vi"/>
 		<Item Name="Parse Variant.vim" Type="VI" URL="../Parse Variant.vim"/>

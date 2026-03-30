@@ -301,8 +301,8 @@ readDisplayMetadata(const pvxs::Value* value,
             display_metadata->units = field.lookup("units").as<std::string>();
 
             // Only numeric types have the following fields
-            if (value->type().kind() == pvxs::Kind::Integer ||
-                value->type().kind() == pvxs::Kind::Real) {
+            auto kind = value->lookup("value").type().kind();
+            if (kind == pvxs::Kind::Integer || kind == pvxs::Kind::Real) {
                 display_metadata->limitLow =
                   field.lookup("limitLow").as<double>();
                 display_metadata->limitHigh =

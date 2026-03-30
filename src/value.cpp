@@ -296,23 +296,28 @@ readDisplayMetadata(const pvxs::Value* value,
             throw labview::lv_err(PVALVError::null_ptr);
 
         if (auto field = (*value)["display"]) {
-            DisplayForm form;
-            int32_t precision;
-            if (auto format = field["format"]) {
-                std::tie(form, precision) =
-                  format_to_form(format.as<std::string>());
-            } else {
-                form = field.lookup("form.index").as<DisplayForm>();
-                precision = field.lookup("precision").as<int32_t>();
+            display_metadata->description =
+              field.lookup("description").as<std::string>();
+            display_metadata->units = field.lookup("units").as<std::string>();
+
+            // Only numeric types have the following fields
+            if (value->type().kind() == pvxs::Kind::Integer ||
+                value->type().kind() == pvxs::Kind::Real) {
+                display_metadata->limitLow =
+                  field.lookup("limitLow").as<double>();
+                display_metadata->limitHigh =
+                  field.lookup("limitHigh").as<double>();
+                if (auto format = field["form"]) {
+                    display_metadata->precision =
+                      field.lookup("precision").as<int32_t>();
+                    display_metadata->form =
+                      field.lookup("form.index").as<DisplayForm>();
+                } else if (auto format = field["format"]) {
+                    std::tie(display_metadata->form,
+                             display_metadata->precision) =
+                      format_to_form(format.as<std::string>());
+                }
             }
-            *display_metadata = {
-                field.lookup("limitLow").as<double>(),
-                field.lookup("limitHigh").as<double>(),
-                field.lookup("description").as<std::string>(),
-                field.lookup("units").as<std::string>(),
-                precision,
-                form,
-            };
             *has_display_metadata = true;
         }
     } catch (...) {

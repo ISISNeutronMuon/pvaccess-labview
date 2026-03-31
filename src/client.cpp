@@ -89,6 +89,7 @@ monitor(pvxs::client::Context* client, char pv_name[], SubHandle* handle)
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 subscriptionNextValue(SubHandle handle,
                       double timeout,
+                      labview::LStrHandle pvName,
                       pvxs::Value** value,
                       int16_t* timedOut)
 {
@@ -96,6 +97,8 @@ subscriptionNextValue(SubHandle handle,
         SP& sub = *reinterpret_cast<SP*>(handle);
         if (sub == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
+
+        pvName = sub->name();
 
         auto timeoutDuration = std::chrono::duration<double>(timeout);
         auto t0 = std::chrono::system_clock::now().time_since_epoch();

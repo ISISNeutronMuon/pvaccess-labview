@@ -12,19 +12,39 @@
 		<Item Name="Alarm Status.ctl" Type="VI" URL="../Alarm Status.ctl"/>
 		<Item Name="Control Metadata.ctl" Type="VI" URL="../Control Metadata.ctl"/>
 		<Item Name="Display Metadata.ctl" Type="VI" URL="../Display Metadata.ctl"/>
+		<Item Name="Timestamp.ctl" Type="VI" URL="../Timestamp.ctl">
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
 		<Item Name="Type Code.ctl" Type="VI" URL="../Type Code.ctl"/>
 		<Item Name="Value Fields.ctl" Type="VI" URL="../Value Fields.ctl"/>
 	</Item>
-	<Item Name="Variant Utilities" Type="Folder">
+	<Item Name="Timestamp Utilities" Type="Folder">
 		<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
-		<Item Name="Get Type Code (Internal).vim" Type="VI" URL="../Get Type Code (Internal).vim"/>
-		<Item Name="Get Type Code (Variant).vi" Type="VI" URL="../Get Type Code (Variant).vi"/>
-		<Item Name="Parse Variant.vim" Type="VI" URL="../Parse Variant.vim"/>
+		<Item Name="EPICS Timestamp to Timestamp.vi" Type="VI" URL="../EPICS Timestamp to Timestamp.vi"/>
+		<Item Name="Timestamp to EPICS Timestamp.vi" Type="VI" URL="../Timestamp to EPICS Timestamp.vi"/>
 	</Item>
-	<Item Name="Format String.vi" Type="VI" URL="../Format String.vi"/>
-	<Item Name="Get Type Code.vim" Type="VI" URL="../Get Type Code.vim"/>
-	<Item Name="Value to Alarm Status.vi" Type="VI" URL="../Value to Alarm Status.vi"/>
-	<Item Name="Value to Description.vi" Type="VI" URL="../Value to Description.vi"/>
-	<Item Name="Value to String.vi" Type="VI" URL="../Value to String.vi"/>
+	<Item Name="Variant Utilities" Type="Folder">
+		<Item Name="Generate Value.vi" Type="VI" URL="../Generate Value.vi"/>
+		<Item Name="Get Type Code (Internal).vim" Type="VI" URL="../Get Type Code (Internal).vim">
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
+		<Item Name="Get Type Code (Variant).vi" Type="VI" URL="../Get Type Code (Variant).vi">
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
+		<Item Name="Get Type Code.vim" Type="VI" URL="../Get Type Code.vim">
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
+		<Item Name="Parse Variant.vim" Type="VI" URL="../Parse Variant.vim">
+			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+		</Item>
+		<Item Name="Variant to Alarm Limits.vi" Type="VI" URL="../Variant to Alarm Limits.vi"/>
+		<Item Name="Variant to Alarm Status.vi" Type="VI" URL="../Variant to Alarm Status.vi"/>
+		<Item Name="Variant to Control Metadata.vi" Type="VI" URL="../Variant to Control Metadata.vi"/>
+		<Item Name="Variant to Display Metadata.vi" Type="VI" URL="../Variant to Display Metadata.vi"/>
+		<Item Name="Variant to String.vi" Type="VI" URL="../Variant to String.vi"/>
+	</Item>
+	<Item Name="Format String.vi" Type="VI" URL="../Format String.vi">
+		<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
+	</Item>
 	<Item Name="Value.lvclass" Type="LVClass" URL="../Value/Value.lvclass"/>
 </Library>

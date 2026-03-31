@@ -18,17 +18,16 @@
 			<Item Name="Client Monitor.vi" Type="VI" URL="../examples/Client Monitor.vi"/>
 			<Item Name="Client.vi" Type="VI" URL="../examples/Client.vi"/>
 			<Item Name="Probe.vi" Type="VI" URL="../examples/Probe.vi"/>
-			<Item Name="RT.vi" Type="VI" URL="../examples/RT.vi"/>
 			<Item Name="Server.vi" Type="VI" URL="../examples/Server.vi"/>
 		</Item>
 		<Item Name="Packaging" Type="Folder">
 			<Item Name="pvaccess.vipb" Type="Document" URL="../pvaccess.vipb"/>
 		</Item>
 		<Item Name="Test" Type="Folder">
-			<Item Name="Generate PV Names.vi" Type="VI" URL="../source/Generate PV Names.vi"/>
-			<Item Name="Generate Value.vi" Type="VI" URL="../source/Generate Value.vi"/>
+			<Item Name="Every Type Code.ctl" Type="VI" URL="../test/Every Type Code.ctl"/>
 			<Item Name="Test Client.vi" Type="VI" URL="../test/Test Client.vi"/>
 			<Item Name="Test Server.vi" Type="VI" URL="../test/Test Server.vi"/>
+			<Item Name="Type Code to PV Name.vi" Type="VI" URL="../test/Type Code to PV Name.vi"/>
 		</Item>
 		<Item Name="Utilities" Type="Folder">
 			<Item Name="Get Library Path.vi" Type="VI" URL="../source/Get Library Path.vi"/>

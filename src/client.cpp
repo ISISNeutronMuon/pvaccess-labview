@@ -102,10 +102,10 @@ subscriptionNextValue(SubHandle handle,
         auto t1 = t0;
         pvxs::Value update;
 
-        while (!update && (t1 - t0 < timeoutDuration)) {
+        do {
             t1 = std::chrono::system_clock::now().time_since_epoch();
             update = sub->pop();
-        }
+        } while (!update && (t1 - t0 < timeoutDuration));
         if (update) {
             *timedOut = 0;
             *value = new pvxs::Value{ update };

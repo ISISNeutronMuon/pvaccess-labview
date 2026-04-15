@@ -68,18 +68,21 @@ put(pvxs::client::Context* client,
     return PVALVError::no_err;
 }
 
-typedef void* SubHandle;
-using SP = std::shared_ptr<pvxs::client::Subscription>;
+struct SubHandle
+{
+    std::shared_ptr<pvxs::client::Subscription> ptr;
+};
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-monitor(pvxs::client::Context* client, char pv_name[], SubHandle* handle)
+monitor(pvxs::client::Context* client, char pv_name[], SubHandle** handle)
 {
     try {
         if (client == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
-        auto sub = client->monitor(pv_name).maskDisconnected().exec();
-        *handle = reinterpret_cast<SubHandle>(new SP(sub));
+        *handle = new SubHandle;
+        if (strlen(pv_name) > 0)
+            (*handle)->ptr = client->monitor(pv_name).maskDisconnected().exec();
     } catch (...) {
         return err2code();
     }
@@ -87,18 +90,18 @@ monitor(pvxs::client::Context* client, char pv_name[], SubHandle* handle)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-subscriptionNextValue(SubHandle handle,
+subscriptionNextValue(SubHandle* handle,
                       double timeout,
                       labview::LStrHandle pvName,
                       pvxs::Value** value,
                       int16_t* timedOut)
 {
     try {
-        SP& sub = *reinterpret_cast<SP*>(handle);
+        if (handle == nullptr)
+            throw labview::lv_err(PVALVError::null_ptr);
+        auto sub = handle->ptr;
         if (sub == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
-
-        pvName = sub->name();
 
         auto timeoutDuration = std::chrono::duration<double>(timeout);
         auto t0 = std::chrono::system_clock::now().time_since_epoch();
@@ -110,27 +113,30 @@ subscriptionNextValue(SubHandle handle,
             update = sub->pop();
         } while (!update && (t1 - t0 < timeoutDuration));
         if (update) {
+            pvName = sub->name();
             *timedOut = 0;
             *value = new pvxs::Value{ update };
         } else {
             *timedOut = 1;
         }
-    } catch (...) {
+    } catch (std::exception& e) {
         return err2code();
     }
     return PVALVError::no_err;
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-closeSubscription(SubHandle handle)
+closeSubscription(SubHandle* handle)
 {
     try {
-        SP& sub = *reinterpret_cast<SP*>(handle);
+        if (handle == nullptr)
+            throw labview::lv_err(PVALVError::null_ptr);
+        auto sub = handle->ptr;
         if (sub == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
         sub->cancel();
-        delete reinterpret_cast<SP*>(handle);
+        delete handle;
     } catch (...) {
         return err2code();
     }

@@ -19,22 +19,20 @@
 			<Item Name="Client.vi" Type="VI" URL="../examples/Client.vi"/>
 			<Item Name="Probe.vi" Type="VI" URL="../examples/Probe.vi"/>
 			<Item Name="Server.vi" Type="VI" URL="../examples/Server.vi"/>
+			<Item Name="Simple Client.vi" Type="VI" URL="../examples/Simple Client.vi"/>
+			<Item Name="Simple Server.vi" Type="VI" URL="../examples/Simple Server.vi"/>
 		</Item>
 		<Item Name="Packaging" Type="Folder">
 			<Item Name="pvaccess.vipb" Type="Document" URL="../pvaccess.vipb"/>
 		</Item>
 		<Item Name="Test" Type="Folder">
 			<Item Name="Every Type Code.ctl" Type="VI" URL="../test/Every Type Code.ctl"/>
+			<Item Name="Every Value.vi" Type="VI" URL="../test/Every Value.vi"/>
 			<Item Name="Test Client.vi" Type="VI" URL="../test/Test Client.vi"/>
 			<Item Name="Test Server.vi" Type="VI" URL="../test/Test Server.vi"/>
-			<Item Name="Type Code to PV Name.vi" Type="VI" URL="../test/Type Code to PV Name.vi"/>
+			<Item Name="Type Code to String.vi" Type="VI" URL="../test/Type Code to String.vi"/>
 		</Item>
-		<Item Name="Utilities" Type="Folder">
-			<Item Name="Get Library Path.vi" Type="VI" URL="../source/Get Library Path.vi"/>
-		</Item>
-		<Item Name="Client.lvlib" Type="Library" URL="../source/Client/Client.lvlib"/>
-		<Item Name="Server.lvlib" Type="Library" URL="../source/Server/Server.lvlib"/>
-		<Item Name="Value.lvlib" Type="Library" URL="../source/Value/Value.lvlib"/>
+		<Item Name="PV Access.lvlib" Type="Library" URL="../source/PV Access.lvlib"/>
 		<Item Name="Dependencies" Type="Dependencies"/>
 		<Item Name="Build Specifications" Type="Build"/>
 	</Item>

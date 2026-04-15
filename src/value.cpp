@@ -92,20 +92,34 @@ convertTypeCode(LVTypeCode code)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-createNTScalar(LVTypeCode type_code,
+createNTScalar(LVTypeCode lv_type_code,
                int16_t display,
                int16_t control,
                int16_t alarm_limit,
                pvxs::Value** value)
 {
     try {
-        *value =
-          new pvxs::Value{ pvxs::nt::NTScalar{ convertTypeCode(type_code),
-                                               (bool)display,
-                                               (bool)control,
-                                               (bool)alarm_limit,
-                                               (bool)display }
-                             .create() };
+        auto type_code = convertTypeCode(lv_type_code);
+        auto def =
+          pvxs::nt::NTScalar{
+              type_code, true, (bool)control, (bool)alarm_limit, (bool)display
+          }
+            .build();
+        *value = new pvxs::Value{ def.create() };
+    } catch (...) {
+        return err2code();
+    }
+    return PVALVError::no_err;
+}
+
+extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
+readId(const pvxs::Value* value, labview::LStrHandle id)
+{
+    try {
+        if (value == nullptr)
+            throw labview::lv_err(PVALVError::null_ptr);
+
+        id = value->id();
     } catch (...) {
         return err2code();
     }
@@ -201,8 +215,8 @@ readAlarmStatus(const pvxs::Value* value, int16_t* has_alarm, Alarm* alarm)
 
         if (auto field = (*value)["alarm"]) {
             *alarm = {
-                field.lookup("severity").as<AlarmSeverity>(),
-                field.lookup("status").as<AlarmStatus>(),
+                field.lookup("severity").as<int32_t>(),
+                field.lookup("status").as<int32_t>(),
                 field.lookup("message").as<std::string>(),
             };
             *has_alarm = true;
@@ -231,94 +245,22 @@ writeAlarmStatus(const pvxs::Value* value, Alarm* alarm)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-readAlarmLimit(const pvxs::Value* value,
-               int16_t* has_alarm_limit,
-               AlarmLimit* alarm_limit)
+readDisplayFormat(const pvxs::Value* value,
+                  int32_t* precision,
+                  DisplayForm* form)
 {
-    *has_alarm_limit = false;
-    try {
-        if (value == nullptr)
-            throw labview::lv_err(PVALVError::null_ptr);
-
-        if (auto field = (*value)["valueAlarm"]) {
-            *alarm_limit = {
-                field.lookup("active").as<int16_t>(),
-                field.lookup("lowAlarmLimit").as<double>(),
-                field.lookup("lowWarningLimit").as<double>(),
-                field.lookup("highWarningLimit").as<double>(),
-                field.lookup("highAlarmLimit").as<double>(),
-                field.lookup("lowAlarmSeverity").as<AlarmSeverity>(),
-                field.lookup("lowWarningSeverity").as<AlarmSeverity>(),
-                field.lookup("highWarningSeverity").as<AlarmSeverity>(),
-                field.lookup("highAlarmSeverity").as<AlarmSeverity>(),
-                field.lookup("hysteresis").as<double>(),
-            };
-            *has_alarm_limit = true;
-        }
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
-}
-
-extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-writeAlarmLimit(const pvxs::Value* value, AlarmLimit* alarm_limit)
-{
-    try {
-        if (value == nullptr)
-            throw labview::lv_err(PVALVError::null_ptr);
-
-        auto field = value->lookup("valueAlarm");
-        field["active"] = alarm_limit->active != 0;
-        field["lowAlarmLimit"] = alarm_limit->lowAlarmLimit;
-        field["lowWarningLimit"] = alarm_limit->lowWarningLimit;
-        field["highWarningLimit"] = alarm_limit->highWarningLimit;
-        field["highAlarmLimit"] = alarm_limit->highAlarmLimit;
-        field["lowAlarmSeverity"] = alarm_limit->lowAlarmSeverity;
-        field["lowWarningSeverity"] = alarm_limit->lowWarningSeverity;
-        field["highWarningSeverity"] = alarm_limit->highWarningSeverity;
-        field["highAlarmSeverity"] = alarm_limit->highAlarmSeverity;
-        field["hysteresis"] = alarm_limit->hysteresis;
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
-}
-
-extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-readDisplayMetadata(const pvxs::Value* value,
-                    int16_t* has_display_metadata,
-                    DisplayMetadata* display_metadata)
-{
-    *has_display_metadata = false;
     try {
         if (value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
         if (auto field = (*value)["display"]) {
-            display_metadata->description =
-              field.lookup("description").as<std::string>();
-            display_metadata->units = field.lookup("units").as<std::string>();
-
-            // Only numeric types have the following fields
-            auto kind = value->lookup("value").type().kind();
-            if (kind == pvxs::Kind::Integer || kind == pvxs::Kind::Real) {
-                display_metadata->limitLow =
-                  field.lookup("limitLow").as<double>();
-                display_metadata->limitHigh =
-                  field.lookup("limitHigh").as<double>();
-                if (auto format = field["form"]) {
-                    display_metadata->precision =
-                      field.lookup("precision").as<int32_t>();
-                    display_metadata->form =
-                      field.lookup("form.index").as<DisplayForm>();
-                } else if (auto format = field["format"]) {
-                    std::tie(display_metadata->form,
-                             display_metadata->precision) =
-                      format_to_form(format.as<std::string>());
-                }
+            if (auto form_field = field["form"]) {
+                *precision = field.lookup("precision").as<int32_t>();
+                *form = form_field.lookup("index").as<DisplayForm>();
+            } else if (auto format = field["format"]) {
+                std::tie(*form, *precision) =
+                  format_to_form(format.as<std::string>());
             }
-            *has_display_metadata = true;
         }
     } catch (...) {
         return err2code();
@@ -327,62 +269,20 @@ readDisplayMetadata(const pvxs::Value* value,
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-writeDisplayMetadata(const pvxs::Value* value,
-                     DisplayMetadata* display_metadata)
+writeDisplayFormat(const pvxs::Value* value,
+                   int32_t precision,
+                   DisplayForm form)
 {
     try {
         if (value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
-        auto field = value->lookup("display");
-        field["limitLow"] = display_metadata->limitLow;
-        field["limitHigh"] = display_metadata->limitHigh;
-        field["description"] = display_metadata->description;
-        field["units"] = display_metadata->units;
-        field["form.index"] = display_metadata->form;
-        field["precision"] = display_metadata->precision;
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
-}
-
-extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-readControlMetadata(const pvxs::Value* value,
-                    int16_t* has_control_metadata,
-                    ControlMetadata* control_metadata)
-{
-    *has_control_metadata = false;
-    try {
-        if (value == nullptr)
-            throw labview::lv_err(PVALVError::null_ptr);
-
-        if (auto field = (*value)["control"]) {
-            *control_metadata = {
-                field.lookup("limitLow").as<double>(),
-                field.lookup("limitHigh").as<double>(),
-                field.lookup("minStep").as<double>(),
-            };
-            *has_control_metadata = true;
+        if (auto field = (*value)["display"]) {
+            if (auto field_form = field["form.index"])
+                field_form = form;
+            if (auto field_precision = field["precision"])
+                field_precision = precision;
         }
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
-}
-
-extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-writeControlMetadata(const pvxs::Value* value,
-                     ControlMetadata* control_metadata)
-{
-    try {
-        if (value == nullptr)
-            throw labview::lv_err(PVALVError::null_ptr);
-
-        auto field = value->lookup("control");
-        field["limitLow"] = control_metadata->limitLow;
-        field["limitHigh"] = control_metadata->limitHigh;
-        field["minStep"] = control_metadata->minStep;
     } catch (...) {
         return err2code();
     }

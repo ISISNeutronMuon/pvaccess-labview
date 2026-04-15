@@ -53,6 +53,18 @@ opkg install pva_labview_<VERSION>.ipk
   sudo apt install make cmake perl libevent-dev
   ```
 
+#### NI Linux RT
+
+- Install build dependencies
+  ```sh
+  opkg install
+    git \
+    packagegroup-core-buildessential \
+    perl-modules \
+    libevent-dev \
+    cmake
+  ```
+
 ### Building dependencies
 
 #### Windows
@@ -71,7 +83,7 @@ opkg install pva_labview_<VERSION>.ipk
   ```
   See the [PVXS docs](https://epics-base.github.io/pvxs/building.html) for more details
 
-#### Linux
+#### Linux and NI Linux RT
 
 - Build EPICS Base
   ```sh

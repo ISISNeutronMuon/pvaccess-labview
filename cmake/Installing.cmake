@@ -1,2 +1,5 @@
-install(TARGETS ${PROJECT_NAME})
+install(
+    TARGETS ${PROJECT_NAME}
+    LIBRARY DESTINATION lib
+)
 install(IMPORTED_RUNTIME_ARTIFACTS Com pvxs)

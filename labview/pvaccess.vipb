@@ -1,7 +1,7 @@
-<VI_Package_Builder_Settings Version="2020.1" Created_Date="2025-04-08 18:46:00" Modified_Date="2026-04-17 00:38:49" Creator="ross titmarsh" Comments="" ID="5ac283379291ff422e9291622ecba3ed">
+<VI_Package_Builder_Settings Version="2020.1" Created_Date="2025-04-08 18:46:00" Modified_Date="2026-04-21 10:21:01" Creator="ross titmarsh" Comments="" ID="e431ce5814c60d14706c61056886daca">
   <Library_General_Settings>
     <Package_File_Name>epics_pvaccess</Package_File_Name>
-    <Library_Version>0.2.0.5</Library_Version>
+    <Library_Version>0.2.0.7</Library_Version>
     <Auto_Increment_Version>false</Auto_Increment_Version>
     <Library_Source_Folder>.</Library_Source_Folder>
     <Library_Output_Folder>..\..</Library_Output_Folder>
@@ -41,6 +41,7 @@
       <URL>https://github.com/ISISNeutronMuon/pvaccess-labview</URL>
       <Release_Notes>Beta release
 - Added classes for normative types to allow for better usability of metadata fields using property nodes
+- Replaced malleable VIs with polymorphism
 - Improved examples
 - Improved documentation</Release_Notes>
     </Description>
@@ -428,20 +429,6 @@
       <Items_Data>
         <Type>Item</Type>
         <Sub_Palette_Index>-1</Sub_Palette_Index>
-        <NameSub_Menu_Name>Create NT Scalar.vim</NameSub_Menu_Name>
-        <Short_Name/>
-        <is_Merge_VI>false</is_Merge_VI>
-        <Position>
-          <Row>3</Row>
-          <Column>1</Column>
-        </Position>
-        <Icon>00000000</Icon>
-        <Path>source\PV Data\NT Scalar\Create NT Scalar.vim</Path>
-        <VI_Title/>
-      </Items_Data>
-      <Items_Data>
-        <Type>Item</Type>
-        <Sub_Palette_Index>-1</Sub_Palette_Index>
         <NameSub_Menu_Name>Create.vi</NameSub_Menu_Name>
         <Short_Name/>
         <is_Merge_VI>false</is_Merge_VI>
@@ -456,15 +443,15 @@
       <Items_Data>
         <Type>Item</Type>
         <Sub_Palette_Index>-1</Sub_Palette_Index>
-        <NameSub_Menu_Name>Create NT Scalar (Numeric).vim</NameSub_Menu_Name>
+        <NameSub_Menu_Name>Create.vi</NameSub_Menu_Name>
         <Short_Name/>
         <is_Merge_VI>false</is_Merge_VI>
         <Position>
           <Row>3</Row>
-          <Column>2</Column>
+          <Column>1</Column>
         </Position>
         <Icon>00000000</Icon>
-        <Path>source\PV Data\NT Scalar (Numeric)\Create NT Scalar (Numeric).vim</Path>
+        <Path>source\PV Data\Create.vi</Path>
         <VI_Title/>
       </Items_Data>
       <Items_Data>
@@ -475,10 +462,10 @@
         <is_Merge_VI>false</is_Merge_VI>
         <Position>
           <Row>3</Row>
-          <Column>3</Column>
+          <Column>2</Column>
         </Position>
         <Icon>00000000</Icon>
-        <Path>source\PV Data\NT Base\Configure Control.vi</Path>
+        <Path>source\PV Data\Configure Control.vi</Path>
         <VI_Title/>
       </Items_Data>
       <Items_Data>
@@ -489,13 +476,13 @@
         <is_Merge_VI>false</is_Merge_VI>
         <Position>
           <Row>3</Row>
-          <Column>4</Column>
+          <Column>3</Column>
         </Position>
         <Icon>00000000</Icon>
         <Path>source\PV Data\NT Base\To Probe.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>6E700DD4E2198887864ADF4DC9026DE3</GUID>
+      <GUID>9E9905D1E17FA35172B0C9453DC342E7</GUID>
     </Functions_Palette_Data>
   </Library_Palette_Definition>
 </VI_Package_Builder_Settings>

@@ -7,9 +7,7 @@
 		<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
 		<Item Name="Get Library Path.vi" Type="VI" URL="../Get Library Path.vi"/>
 	</Item>
-	<Item Name="Pointer Base.lvclass" Type="LVClass" URL="../Pointer Base/Pointer Base.lvclass">
-		<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
-	</Item>
+	<Item Name="Pointer Base.lvclass" Type="LVClass" URL="../Pointer Base/Pointer Base.lvclass"/>
 	<Item Name="PV Data.lvlib" Type="Library" URL="../PV Data/PV Data.lvlib"/>
 	<Item Name="PVA Client.lvlib" Type="Library" URL="../Client/PVA Client.lvlib"/>
 	<Item Name="PVA Server.lvlib" Type="Library" URL="../Server/PVA Server.lvlib"/>

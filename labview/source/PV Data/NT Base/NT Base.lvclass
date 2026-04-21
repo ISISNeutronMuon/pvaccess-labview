@@ -17,8 +17,14 @@
 </Property>
 	<Property Name="NI.LVClass.IsTransferClass" Type="Bool">false</Property>
 	<Property Name="NI.LVClass.LowestCompatibleVersion" Type="Str">1.0.0.0</Property>
-	<Property Name="NI_IconEditor" Type="Str">50 53 51 51 56 48 48 51 13 0 0 0 0 1 23 21 76 111 97 100 32 38 32 85 110 108 111 97 100 46 108 118 99 108 97 115 115 0 0 1 0 0 0 0 0 9 0 0 4 48 1 100 0 0 80 84 72 48 0 0 0 4 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 15 13 76 97 121 101 114 46 108 118 99 108 97 115 115 0 0 1 0 0 0 0 0 7 0 0 3 189 0 0 0 0 0 0 0 0 0 0 3 162 0 40 0 0 3 156 0 0 3 96 0 0 0 0 0 9 0 32 0 24 0 0 0 0 0 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 0 0 0 0 0 0 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 0 0 0 0 0 0 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 0 0 0 0 0 0 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 0 0 0 0 0 0 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 0 0 0 0 0 0 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 0 0 0 0 0 0 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 0 0 0 7 86 73 32 73 99 111 110 100 1 0 0 0 0 0 7 78 84 32 66 65 83 69 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 11 83 109 97 108 108 32 70 111 110 116 115 0 1 8 1 1
+	<Property Name="NI_IconEditor" Type="Str">50 53 51 51 56 48 48 51 13 0 0 0 0 1 23 21 76 111 97 100 32 38 32 85 110 108 111 97 100 46 108 118 99 108 97 115 115 0 0 1 0 0 0 0 0 9 0 0 4 48 1 100 0 0 80 84 72 48 0 0 0 4 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 15 13 76 97 121 101 114 46 108 118 99 108 97 115 115 0 0 1 0 0 0 0 0 7 0 0 3 189 0 0 0 0 0 0 0 0 0 0 3 162 0 40 0 0 3 156 0 0 3 96 0 0 0 0 0 9 0 32 0 24 0 0 0 0 0 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 0 0 0 0 0 0 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 0 0 0 0 0 0 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 0 0 0 0 0 0 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 0 0 0 0 0 0 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 0 0 0 0 0 0 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 0 0 0 0 0 0 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 188 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 0 0 0 7 86 73 32 73 99 111 110 100 1 0 0 0 0 0 7 78 84 32 66 65 83 69 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 11 83 109 97 108 108 32 70 111 110 116 115 0 1 8 1 1
+
 </Property>
+	<Item Name="Friends List" Type="Friends List">
+		<Item Name="PV Access.lvlib:PV Data.lvlib" Type="Friended Library" URL="../../PV Data.lvlib"/>
+		<Item Name="PV Access.lvlib:PV Data.lvlib:NT Scalar.lvclass" Type="Friended Library" URL="../../NT Scalar/NT Scalar.lvclass"/>
+		<Item Name="PV Access.lvlib:PV Data.lvlib:NT Scalar (Numeric).lvclass" Type="Friended Library" URL="../../NT Scalar (Numeric)/NT Scalar (Numeric).lvclass"/>
+	</Item>
 	<Item Name="NT Base.ctl" Type="Class Private Data" URL="NT Base.ctl">
 		<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
 	</Item>
@@ -118,9 +124,9 @@
 			<Property Name="NI.ClassItem.State" Type="Int">1342710272</Property>
 		</Item>
 	</Item>
-	<Item Name="Display Description" Type="Property Definition">
-		<Property Name="NI.ClassItem.Property.LongName" Type="Str">Display: Description</Property>
-		<Property Name="NI.ClassItem.Property.ShortName" Type="Str">Display.Description</Property>
+	<Item Name="Description" Type="Property Definition">
+		<Property Name="NI.ClassItem.Property.LongName" Type="Str">Description</Property>
+		<Property Name="NI.ClassItem.Property.ShortName" Type="Str">Description</Property>
 		<Property Name="NI.ClassItem.Property.SortKey" Type="Int">-1</Property>
 		<Property Name="NI.LibItem.Scope" Type="Int">1</Property>
 		<Item Name="Read Display Description.vi" Type="VI" URL="../Read Display Description.vi">
@@ -229,28 +235,30 @@
 			<Property Name="NI.ClassItem.ExecutionSystem" Type="Int">-1</Property>
 			<Property Name="NI.ClassItem.Flags" Type="Int">0</Property>
 			<Property Name="NI.ClassItem.IsStaticMethod" Type="Bool">true</Property>
-			<Property Name="NI.ClassItem.MethodScope" Type="UInt">1</Property>
+			<Property Name="NI.ClassItem.MethodScope" Type="UInt">4</Property>
 			<Property Name="NI.ClassItem.Priority" Type="Int">1</Property>
-			<Property Name="NI.ClassItem.State" Type="Int">1342710288</Property>
+			<Property Name="NI.ClassItem.State" Type="Int">1082130960</Property>
+			<Property Name="NI.LibItem.Scope" Type="Int">4</Property>
 		</Item>
 	</Item>
 	<Item Name="Configure Control.vi" Type="VI" URL="../Configure Control.vi">
-		<Property Name="NI.ClassItem.ConnectorPane" Type="Bin">)!#!!!!!!!)!"1!&amp;!!!-!%!!!@````]!!!!"!!%!!!&amp;R!!!!#Q!-1#%'=X2B&gt;(6T!!!,1!-!"'.P:'5!!""!-0````]'=W^V=G.F!!!71&amp;!!!Q!!!!%!!AFF=H*P=C"P&gt;81!"!!!!"B!=!!)!!!!"A!!#W.P&lt;H2S&lt;WQA&lt;X6U!%2!=!!?!!!P$V"7)%&amp;D9W6T=SZM&gt;GRJ9AV16C"%982B,GRW&lt;'FC$UZ5)%*B=W5O&lt;(:D&lt;'&amp;T=Q!,4F1A1G&amp;T:3"P&gt;81!)%"1!!-!!!!"!!)4:8*S&lt;X)A;7YA+'ZP)'6S=G^S+1!51(!!#!!!!!9!!!&gt;D&lt;WZU=G^M!%2!=!!?!!!P$V"7)%&amp;D9W6T=SZM&gt;GRJ9AV16C"%982B,GRW&lt;'FC$UZ5)%*B=W5O&lt;(:D&lt;'&amp;T=Q!+4F1A1G&amp;T:3"J&lt;A!!6!$Q!!Q!!Q!%!!5!"A!%!!1!"!!%!!=!"!!)!!E$!!"Y!!!.#!!!!!!!!!U+!!#.#Q!!!!!!!!!!!!!!!!!!!!!!!!I!!!!!!!!!#A!!!*)!!!!!!1!+!!!!!!</Property>
+		<Property Name="NI.ClassItem.ConnectorPane" Type="Bin">)!#!!!!!!!)!"1!&amp;!!!-!%!!!@````]!!!!"!!%!!!&amp;_!!!!#Q!-1#%'=X2B&gt;(6T!!!,1!-!"'.P:'5!!""!-0````]'=W^V=G.F!!!71&amp;!!!Q!!!!%!!AFF=H*P=C"P&gt;81!"!!!!"B!=!!)!!!!"A!!#W.P&lt;H2S&lt;WQA&lt;X6U!%2!=!!?!!!P$V"7)%&amp;D9W6T=SZM&gt;GRJ9AV16C"%982B,GRW&lt;'FC$UZ5)%*B=W5O&lt;(:D&lt;'&amp;T=Q!,4F1A1G&amp;T:3"P&gt;81!)%"1!!-!!!!"!!)4:8*S&lt;X)A;7YA+'ZP)'6S=G^S+1!51(!!#!!!!!9!!!&gt;D&lt;WZU=G^M!%2!=!!?!!!P$V"7)%&amp;D9W6T=SZM&gt;GRJ9AV16C"%982B,GRW&lt;'FC$UZ5)%*B=W5O&lt;(:D&lt;'&amp;T=Q!+4F1A1G&amp;T:3"J&lt;A!!91$Q!!Q!!Q!%!!5!"A!%!!1!"!!%!!=!"!!)!!E$!!"Y!!!.#!!!!!!!!!U+!!!.#Q!!!!!!!!!!!!!!!!!!!!!!!!I!!!!!!!!!%A!!!")!!!U!!!!-!!!!!!!!!!!!!!%!#A!!!!!</Property>
+		<Property Name="NI.ClassItem.ExecutionSystem" Type="Int">-1</Property>
+		<Property Name="NI.ClassItem.Flags" Type="Int">0</Property>
+		<Property Name="NI.ClassItem.IsStaticMethod" Type="Bool">true</Property>
+		<Property Name="NI.ClassItem.MethodScope" Type="UInt">4</Property>
+		<Property Name="NI.ClassItem.Priority" Type="Int">1</Property>
+		<Property Name="NI.ClassItem.State" Type="Int">1342710288</Property>
+		<Property Name="NI.LibItem.Scope" Type="Int">4</Property>
+	</Item>
+	<Item Name="Copy.vi" Type="VI" URL="../Copy.vi">
+		<Property Name="NI.ClassItem.ConnectorPane" Type="Bin">)!#!!!!!!!)!"1!&amp;!!!-!%!!!@````]!!!!"!!%!!!&amp;&amp;!!!!#1!-1#%'=X2B&gt;(6T!!!,1!-!"'.P:'5!!""!-0````]'=W^V=G.F!!!71&amp;!!!Q!!!!%!!AFF=H*P=C"P&gt;81!"!!!!%2!=!!?!!!P$V"7)%&amp;D9W6T=SZM&gt;GRJ9AV16C"%982B,GRW&lt;'FC$UZ5)%*B=W5O&lt;(:D&lt;'&amp;T=Q!,4F1A1G&amp;T:3"P&gt;81!)%"1!!-!!!!"!!)4:8*S&lt;X)A;7YA+'ZP)'6S=G^S+1"%1(!!(A!!,Q^16C""9W.F=X-O&lt;(:M;7).5&amp;9A2'&amp;U93ZM&gt;GRJ9A^/6#"#98.F,GRW9WRB=X-!#EZ5)%*B=W5A;7Y!!&amp;1!]!!-!!-!"!!%!!5!"!!%!!1!"!!'!!1!"Q!(!A!!?!!!$1A!!!!!!!!!!!!!D1M!!!!!!!!!!!!!!!!!!!!!!!!)!!!!!!!!!"!!!!#3!!!!!!%!#!!!!!!</Property>
 		<Property Name="NI.ClassItem.ExecutionSystem" Type="Int">-1</Property>
 		<Property Name="NI.ClassItem.Flags" Type="Int">0</Property>
 		<Property Name="NI.ClassItem.IsStaticMethod" Type="Bool">false</Property>
 		<Property Name="NI.ClassItem.MethodScope" Type="UInt">1</Property>
 		<Property Name="NI.ClassItem.Priority" Type="Int">1</Property>
-		<Property Name="NI.ClassItem.State" Type="Int">1342710288</Property>
-	</Item>
-	<Item Name="Create NT Base.vim" Type="VI" URL="../Create NT Base.vim">
-		<Property Name="NI.ClassItem.ConnectorPane" Type="Bin">)!#!!!!!!!)!"1!&amp;!!!-!%!!!@````]!!!!"!!%!!!'3!!!!$1!-1#%'=X2B&gt;(6T!!!,1!-!"'.P:'5!!""!-0````]'=W^V=G.F!!!71&amp;!!!Q!!!!%!!AFF=H*P=C"P&gt;81!"!!!!!J!5Q6W97RV:1"%1(!!(A!!,Q^16C""9W.F=X-O&lt;(:M;7).5&amp;9A2'&amp;U93ZM&gt;GRJ9A^/6#"#98.F,GRW9WRB=X-!#UZ5)%*B=W5A&lt;X6U!"2!6!!'$82J&lt;76T&gt;'&amp;N=#"P&gt;81!%%"5!!9*&gt;'FN:8.U97VQ!#"!5!!$!!!!!1!#%W6S=G^S)'FO)#BO&lt;S"F=H*P=CE!%E"4$7FO;82J97QA&gt;G&amp;M&gt;75!2%"Q!"Y!!#]05&amp;9A17.D:8.T,GRW&lt;'FC$6"7)%2B&gt;'%O&lt;(:M;7)04F1A1G&amp;T:3ZM&gt;G.M98.T!!J/6#"#98.F)'FO!!"B!0!!$!!$!!1!"1!'!!=!"!!)!!1!#1!%!!I!#Q-!!(A!!!U)!!!!!!!!$1I!!!U,!!!."A!!!!!!!!A!!!!!!!!!#A!!!!!!!!!)!!!!#A!!$1!!!!Q!!!!!!!!!!!!!!1!-!!!!!!</Property>
-		<Property Name="NI.ClassItem.ExecutionSystem" Type="Int">-1</Property>
-		<Property Name="NI.ClassItem.Flags" Type="Int">16777344</Property>
-		<Property Name="NI.ClassItem.IsStaticMethod" Type="Bool">true</Property>
-		<Property Name="NI.ClassItem.MethodScope" Type="UInt">1</Property>
-		<Property Name="NI.ClassItem.Priority" Type="Int">1</Property>
-		<Property Name="NI.ClassItem.State" Type="Int">268967952</Property>
+		<Property Name="NI.ClassItem.State" Type="Int">1342710272</Property>
 	</Item>
 	<Item Name="Create Value.vi" Type="VI" URL="../Create Value.vi">
 		<Property Name="NI.ClassItem.ConnectorPane" Type="Bin">)!#!!!!!!!)!"1!&amp;!!!-!%!!!@````]!!!!"!!%!!!'*!!!!#A!-1#%'=X2B&gt;(6T!!!,1!-!"'.P:'5!!""!-0````]'=W^V=G.F!!!71&amp;!!!Q!!!!%!!AFF=H*P=C"P&gt;81!"!!!!%2!=!!?!!!P$V"7)%&amp;D9W6T=SZM&gt;GRJ9AV16C"%982B,GRW&lt;'FC$V"7)%2B&gt;'%O&lt;(:D&lt;'&amp;T=Q!,5&amp;9A2'&amp;U93"P&gt;81!2%"Q!"Y!!#]05&amp;9A17.D:8.T,GRW&lt;'FC$6"7)%2B&gt;'%O&lt;(:M;7)04F1A1G&amp;T:3ZM&gt;G.M98.T!!N/6#"#98.F)'^V&gt;!!A1&amp;!!!Q!!!!%!!B.F=H*P=C"J&lt;C!I&lt;G]A:8*S&lt;X)J!%2!=!!?!!!P$V"7)%&amp;D9W6T=SZM&gt;GRJ9AV16C"%982B,GRW&lt;'FC$UZ5)%*B=W5O&lt;(:D&lt;'&amp;T=Q!+4F1A1G&amp;T:3"J&lt;A!!6!$Q!!Q!!Q!%!!5!"A!%!!1!"!!%!!=!"!!%!!A#!!"Y!!!.#!!!!!!!!!E!!!#.#Q!!!!!!!!!!!!!!!!!!!!!!!!A!!!!!!!!!!!!!!*!!!!!!!1!*!!!!!!</Property>
@@ -259,24 +267,6 @@
 		<Property Name="NI.ClassItem.IsStaticMethod" Type="Bool">false</Property>
 		<Property Name="NI.ClassItem.MethodScope" Type="UInt">1</Property>
 		<Property Name="NI.ClassItem.MustOverride" Type="Bool">true</Property>
-		<Property Name="NI.ClassItem.Priority" Type="Int">1</Property>
-		<Property Name="NI.ClassItem.State" Type="Int">1342710272</Property>
-	</Item>
-	<Item Name="Create.vim" Type="VI" URL="../Create.vim">
-		<Property Name="NI.ClassItem.ConnectorPane" Type="Bin">)!#!!!!!!!)!"1!&amp;!!!-!%!!!@````]!!!!"!!%!!!&amp;&amp;!!!!$!!-1#%'=X2B&gt;(6T!!!,1!-!"'.P:'5!!""!-0````]'=W^V=G.F!!!71&amp;!!!Q!!!!%!!AFF=H*P=C"P&gt;81!"!!!!!Z!5QFW97RV:3"P&gt;81!2%"Q!"Y!!#]05&amp;9A17.D:8.T,GRW&lt;'FC$6"7)%2B&gt;'%O&lt;(:M;7)04F1A1G&amp;T:3ZM&gt;G.M98.T!!N/6#"#98.F)'^V&gt;!!51&amp;1!"AVU;7VF=X2B&lt;8!A&lt;X6U!""!6!!'#82J&lt;76T&gt;'&amp;N=!!A1&amp;!!!Q!!!!%!!B.F=H*P=C"J&lt;C!I&lt;G]A:8*S&lt;X)J!"*!5QVJ&lt;GFU;7&amp;M)(:B&lt;(6F!&amp;1!]!!-!!-!"!!&amp;!!9!"Q!%!!A!"!!*!!1!#A!%!Q!!?!!!$1A!!!!!!!!.#A!!#1!!!!U'!!!!!!!!#!!!!!!!!!!+!!!!!!!!!!A!!!!!!!!!!!%!#Q!!!!!</Property>
-		<Property Name="NI.ClassItem.ExecutionSystem" Type="Int">-1</Property>
-		<Property Name="NI.ClassItem.Flags" Type="Int">16777344</Property>
-		<Property Name="NI.ClassItem.IsStaticMethod" Type="Bool">true</Property>
-		<Property Name="NI.ClassItem.MethodScope" Type="UInt">1</Property>
-		<Property Name="NI.ClassItem.Priority" Type="Int">1</Property>
-		<Property Name="NI.ClassItem.State" Type="Int">276832272</Property>
-	</Item>
-	<Item Name="From NT Base.vi" Type="VI" URL="../From NT Base.vi">
-		<Property Name="NI.ClassItem.ConnectorPane" Type="Bin">)!#!!!!!!!)!"1!&amp;!!!-!%!!!@````]!!!!"!!%!!!&amp;&amp;!!!!#1!-1#%'=X2B&gt;(6T!!!,1!-!"'.P:'5!!""!-0````]'=W^V=G.F!!!71&amp;!!!Q!!!!%!!AFF=H*P=C"P&gt;81!"!!!!%2!=!!?!!!P$V"7)%&amp;D9W6T=SZM&gt;GRJ9AV16C"%982B,GRW&lt;'FC$UZ5)%*B=W5O&lt;(:D&lt;'&amp;T=Q!,4F1A1G&amp;T:3"P&gt;81!)%"1!!-!!!!"!!)4:8*S&lt;X)A;7YA+'ZP)'6S=G^S+1"%1(!!(A!!,Q^16C""9W.F=X-O&lt;(:M;7).5&amp;9A2'&amp;U93ZM&gt;GRJ9A^/6#"#98.F,GRW9WRB=X-!#EZ5)%*B=W5A;7Y!!&amp;1!]!!-!!-!"!!%!!5!"!!%!!1!"!!'!!1!"Q!(!A!!?!!!$1A!!!!!!!!!!!!!D1M!!!!!!!!!!!!!!!!!!!!!!!!)!!!!!!!!!!A!!!#3!!!!!!%!#!!!!!!</Property>
-		<Property Name="NI.ClassItem.ExecutionSystem" Type="Int">-1</Property>
-		<Property Name="NI.ClassItem.Flags" Type="Int">0</Property>
-		<Property Name="NI.ClassItem.IsStaticMethod" Type="Bool">false</Property>
-		<Property Name="NI.ClassItem.MethodScope" Type="UInt">1</Property>
 		<Property Name="NI.ClassItem.Priority" Type="Int">1</Property>
 		<Property Name="NI.ClassItem.State" Type="Int">1342710272</Property>
 	</Item>

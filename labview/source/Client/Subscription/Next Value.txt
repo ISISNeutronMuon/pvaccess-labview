@@ -1,0 +1,68 @@
+<VI syntaxVersion=12 LVversion=20008000 revision=5 name="PV Access.lvlib:PVA Client.lvlib:Subscription.lvclass:Next Value.vi" encoding="System">
+<TITLE><NO_TITLE name="PV Access.lvlib:PVA Client.lvlib:Subscription.lvclass:Next Value.vi"></TITLE>
+<HELP_PATH></HELP_PATH>
+<HELP_TAG></HELP_TAG>
+<RTM_PATH type="default"></RTM_PATH>
+<DESC></DESC>
+<CONTENT>
+	<GROUPER>
+		<PARTS>
+		</PARTS></GROUPER>
+	<MENU_ITEM_NAME subVIName="Next Value (NT).vi">NT Any</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (NT).vi">NT Any</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (NT Scalar).vi">NT Scalar</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (NT Scalar).vi">NT Scalar</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (NT Scalar Numeric).vi">NT Scalar (Numeric)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (NT Scalar Numeric).vi">NT Scalar (Numeric)</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (DBL).vi">NT Scalar (Double)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (DBL).vi">Double</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (SGL).vi">NT Scalar (Single)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (SGL).vi">Single</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (I64).vi">NT Scalar (I64)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (I64).vi">I64</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (I32).vi">NT Scalar (I32)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (I32).vi">I32</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (I16).vi">NT Scalar (I16)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (I16).vi">I16</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (I8).vi">NT Scalar (I8)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (I8).vi">I8</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (U64).vi">NT Scalar (U64)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (U64).vi">U64</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (U32).vi">NT Scalar (U32)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (U32).vi">U32</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (U16).vi">NT Scalar (U16)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (U16).vi">U16</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (U8).vi">NT Scalar (U8)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (U8).vi">U8</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (String).vi">NT Scalar (String)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (String).vi">String</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (Boolean).vi">NT Scalar (Boolean)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (Boolean).vi">Boolean</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (DBL Array).vi">NT Scalar Array (Double)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (DBL Array).vi">Double Array</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (SGL Array).vi">NT Scalar Array (SingleSGL)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (SGL Array).vi">Single Array</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (I64 Array).vi">NT Scalar Array (I64)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (I64 Array).vi">I64 Array</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (I32 Array).vi">NT Scalar Array (I32)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (I32 Array).vi">I32 Array</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (I16 Array).vi">NT Scalar Array (I16)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (I16 Array).vi">I16 Array</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (I8 Array).vi">NT Scalar Array (I8)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (I8 Array).vi">I8 Array</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (U64 Array).vi">NT Scalar Array (U64)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (U64 Array).vi">U64 Array</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (U32 Array).vi">NT Scalar Array (U32)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (U32 Array).vi">U32 Array</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (U16 Array).vi">NT Scalar Array (U16)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (U16 Array).vi">U16 Array</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (U8 Array).vi">NT Scalar Array (U8)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (U8 Array).vi">U8 Array</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (String Array).vi">NT Scalar Array (String)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (String Array).vi">String Array</SHORT_ITEM_NAME>
+	<MENU_ITEM_NAME subVIName="Next Value (Boolean Array).vi">NT Scalar Array (Boolean)</MENU_ITEM_NAME>
+	<SHORT_ITEM_NAME subVIName="Next Value (Boolean Array).vi">Boolean Array</SHORT_ITEM_NAME>
+</CONTENT>
+</VI>
+
+

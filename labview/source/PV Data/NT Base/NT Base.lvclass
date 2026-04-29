@@ -315,13 +315,4 @@
 		<Property Name="NI.ClassItem.Priority" Type="Int">1</Property>
 		<Property Name="NI.ClassItem.State" Type="Int">1342710288</Property>
 	</Item>
-	<Item Name="Write Value.vim" Type="VI" URL="../Write Value.vim">
-		<Property Name="NI.ClassItem.ConnectorPane" Type="Bin">)!#!!!!!!!)!"1!&amp;!!!-!%!!!@````]!!!!"!!%!!!';!!!!$1!-1#%'=X2B&gt;(6T!!!,1!-!"'.P:'5!!""!-0````]'=W^V=G.F!!!71&amp;!!!Q!!!!%!!AFF=H*P=C"P&gt;81!"!!!!!Z!5QFW97RV:3"P&gt;81!2%"Q!"Y!!#]05&amp;9A17.D:8.T,GRW&lt;'FC$6"7)%2B&gt;'%O&lt;(:M;7)04F1A1G&amp;T:3ZM&gt;G.M98.T!!N/6#"#98.F)'^V&gt;!!51&amp;1!"AVU;7VF=X2B&lt;8!A&lt;X6U!"2!6!!'$(2J&lt;76T&gt;'&amp;N=#"J&lt;A!!)%"1!!-!!!!"!!)4:8*S&lt;X)A;7YA+'ZP)'6S=G^S+1!31&amp;-.;7ZJ&gt;'FB&lt;#"W97RV:1"%1(!!(A!!,Q^16C""9W.F=X-O&lt;(:M;7).5&amp;9A2'&amp;U93ZM&gt;GRJ9A^/6#"#98.F,GRW9WRB=X-!#EZ5)%*B=W5A;7Y!!'%!]!!-!!-!"!!&amp;!!9!"Q!%!!A!"!!*!!1!#A!,!Q!!?!!!$1A!!!!!!!!.#A!!$1M!!!U'!!!!!!!!#!!!!!!!!!!+!!!!!!!!!!A!!!!3!!!.!!!!$!!!!!!!!!!!!!!"!!Q!!!!!</Property>
-		<Property Name="NI.ClassItem.ExecutionSystem" Type="Int">-1</Property>
-		<Property Name="NI.ClassItem.Flags" Type="Int">16777344</Property>
-		<Property Name="NI.ClassItem.IsStaticMethod" Type="Bool">true</Property>
-		<Property Name="NI.ClassItem.MethodScope" Type="UInt">1</Property>
-		<Property Name="NI.ClassItem.Priority" Type="Int">1</Property>
-		<Property Name="NI.ClassItem.State" Type="Int">268967952</Property>
-	</Item>
 </LVClass>

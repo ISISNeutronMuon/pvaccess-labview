@@ -113,6 +113,18 @@ createNTScalar(LVTypeCode lv_type_code,
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
+createNTEnum(pvxs::Value** value)
+{
+    try {
+        auto def = pvxs::nt::NTEnum{}.build();
+        *value = new pvxs::Value{ def.create() };
+    } catch (...) {
+        return err2code();
+    }
+    return PVALVError::no_err;
+}
+
+extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 readId(const pvxs::Value* value, labview::LStrHandle id)
 {
     try {

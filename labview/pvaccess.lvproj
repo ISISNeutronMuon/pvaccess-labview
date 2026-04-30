@@ -17,6 +17,7 @@
 		<Item Name="Examples" Type="Folder">
 			<Item Name="Client Monitor.vi" Type="VI" URL="../examples/Client Monitor.vi"/>
 			<Item Name="Client.vi" Type="VI" URL="../examples/Client.vi"/>
+			<Item Name="Enum Server.vi" Type="VI" URL="../examples/Enum Server.vi"/>
 			<Item Name="Probe.vi" Type="VI" URL="../examples/Probe.vi"/>
 			<Item Name="Server.vi" Type="VI" URL="../examples/Server.vi"/>
 			<Item Name="Simple Client.vi" Type="VI" URL="../examples/Simple Client.vi"/>

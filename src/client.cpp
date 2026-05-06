@@ -92,9 +92,9 @@ monitor(pvxs::client::Context* client, char pv_name[], SubHandle** handle)
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 subscriptionNextValue(SubHandle* handle,
                       double timeout,
-                      labview::LStrHandle pvName,
+                      labview::LStrHandle pv_name,
                       pvxs::Value** value,
-                      int16_t* timedOut)
+                      int16_t* timed_out)
 {
     try {
         if (handle == nullptr)
@@ -113,11 +113,11 @@ subscriptionNextValue(SubHandle* handle,
             update = sub->pop();
         } while (!update && (t1 - t0 < timeoutDuration));
         if (update) {
-            pvName = sub->name();
-            *timedOut = 0;
+            pv_name = sub->name();
+            *timed_out = 0;
             *value = new pvxs::Value{ update };
         } else {
-            *timedOut = 1;
+            *timed_out = 1;
         }
     } catch (std::exception& e) {
         return err2code();

@@ -13,7 +13,7 @@ F4.2  -> { "Decimal", 2 }
 E10.3 -> { "Exponential", 3 }
 */
 std::tuple<DisplayForm, int32_t>
-format_to_form(std::string format)
+formatToFormat(std::string format)
 {
     auto form = DisplayForm::Default;
     switch (std::tolower(format[0])) {
@@ -271,7 +271,7 @@ readDisplayFormat(const pvxs::Value* value,
                 *form = form_field.lookup("index").as<DisplayForm>();
             } else if (auto format = field["format"]) {
                 std::tie(*form, *precision) =
-                  format_to_form(format.as<std::string>());
+                  formatToFormat(format.as<std::string>());
             }
         }
     } catch (...) {

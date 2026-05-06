@@ -63,6 +63,23 @@ closeServer(pvxs::server::Server* server)
     return PVALVError::no_err;
 }
 
+void
+updateTimestamp(pvxs::Value& value)
+{
+    if (auto ts = value["timeStamp"]) {
+        // If the timestamp has not been modified
+        if (!ts.isMarked(true, true)) {
+            // Replace it with the current time
+            epicsTimeStamp now;
+            if (!epicsTimeGetCurrent(&now)) {
+                ts["secondsPastEpoch"] =
+                  now.secPastEpoch + POSIX_TIME_AT_EPICS_EPOCH;
+                ts["nanoseconds"] = now.nsec;
+            }
+        }
+    }
+}
+
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 addPV(pvxs::server::StaticSource* source,
       char pv_name[],
@@ -76,7 +93,13 @@ addPV(pvxs::server::StaticSource* source,
         auto pv{ pvxs::server::SharedPV::buildReadonly() };
 
         if (read_only == 0) {
-            pv = pvxs::server::SharedPV::buildMailbox();
+            pv.onPut([](pvxs::server::SharedPV& pv,
+                          std::unique_ptr<pvxs::server::ExecOp>&& op,
+                          pvxs::Value&& top) {
+                updateTimestamp(top);
+                pv.post(top);
+                op->reply();
+            });
         }
 
         pv.open(*value);

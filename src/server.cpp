@@ -64,13 +64,21 @@ closeServer(pvxs::server::Server* server)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-addPV(pvxs::server::StaticSource* source, char pv_name[], pvxs::Value* value)
+addPV(pvxs::server::StaticSource* source,
+      char pv_name[],
+      pvxs::Value* value,
+      int16_t read_only)
 {
     try {
         if (source == nullptr || value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
-        auto pv{ pvxs::server::SharedPV::buildMailbox() };
+        auto pv{ pvxs::server::SharedPV::buildReadonly() };
+
+        if (read_only == 0) {
+            pv = pvxs::server::SharedPV::buildMailbox();
+        }
+
         pv.open(*value);
         source->add(pv_name, pv);
         delete value;

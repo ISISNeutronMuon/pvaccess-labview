@@ -58,7 +58,9 @@ put(pvxs::client::Context* client,
             throw labview::lv_err(PVALVError::null_ptr);
 
         client->put(pv_name)
-          .set("value", (*value)["value"])
+          .build([value](pvxs::Value&& prototype) {
+              return prototype.assign(*value);
+          })
           .exec()
           ->wait(timeout);
         delete value;

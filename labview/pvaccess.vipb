@@ -1,7 +1,7 @@
-<VI_Package_Builder_Settings Version="2020.1" Created_Date="2025-04-08 18:46:00" Modified_Date="2026-04-30 21:32:10" Creator="ross titmarsh" Comments="" ID="d3fcd3fdecd883dcca38e6961a33f693">
+<VI_Package_Builder_Settings Version="2020.1" Created_Date="2025-04-08 18:46:00" Modified_Date="2026-05-07 16:17:47" Creator="ross titmarsh" Comments="" ID="be51387aadf2df4221bff9f133c42a2e">
   <Library_General_Settings>
     <Package_File_Name>epics_pvaccess</Package_File_Name>
-    <Library_Version>0.3.0.10</Library_Version>
+    <Library_Version>0.4.0.11</Library_Version>
     <Auto_Increment_Version>false</Auto_Increment_Version>
     <Library_Source_Folder>.</Library_Source_Folder>
     <Library_Output_Folder>..\..</Library_Output_Folder>
@@ -39,12 +39,22 @@
       <Copyright/>
       <Packager>Ross Titmarsh</Packager>
       <URL>https://github.com/ISISNeutronMuon/pvaccess-labview</URL>
-      <Release_Notes>- Added NTEnum
-- Added PV not found handling and indicators
-- Added missing post methods
-- Added "Value to String" to pallette
-- Fixed missing timeout checks
-- Fixed timestamp wiring</Release_Notes>
+      <Release_Notes>Breaking changes
+- Changed "PV found?" indicator to "PV not found?" to match the logic of the client timeout
+
+Features
+- Added option to make PVs read only
+- Added alarm and control limits processing
+- Added enum client example
+- Added client put for NTEnum by index
+
+Fixes
+- Added missing checks for PV not found where needed
+- Fixed incorrect VI being used for I32 post
+- Added missing timeout case
+- Fixed inverted cases
+- Removed default constraints on example controls
+- Fixed client put only setting value field</Release_Notes>
     </Description>
     <Destinations>
       <Toolkit_VIs>
@@ -497,7 +507,7 @@
         <Path>source\PV Data\NT Base\To Probe.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>7DC2D0009B0D18F5D6092FBE5A8D390F</GUID>
+      <GUID>9BD157F940181FE00AE7AE9E878F4E3F</GUID>
     </Functions_Palette_Data>
   </Library_Palette_Definition>
 </VI_Package_Builder_Settings>

@@ -66,15 +66,88 @@ closeServer(pvxs::server::Server* server)
 void
 updateTimestamp(pvxs::Value& value)
 {
-    if (auto ts = value["timeStamp"]) {
-        // If the timestamp has not been modified
-        if (!ts.isMarked(true, true)) {
-            // Replace it with the current time
-            epicsTimeStamp now;
-            if (!epicsTimeGetCurrent(&now)) {
-                ts["secondsPastEpoch"] =
-                  now.secPastEpoch + POSIX_TIME_AT_EPICS_EPOCH;
-                ts["nanoseconds"] = now.nsec;
+    // If the timestamp has not been modified
+    if (auto ts = value["timeStamp"]; !ts.isMarked(true, true)) {
+        // Replace it with the current time
+        if (epicsTimeStamp now; !epicsTimeGetCurrent(&now)) {
+            ts["secondsPastEpoch"] =
+              now.secPastEpoch + POSIX_TIME_AT_EPICS_EPOCH;
+            ts["nanoseconds"] = now.nsec;
+        }
+    }
+}
+
+void
+raiseAlarm(pvxs::Value& value, int32_t severity, std::string message)
+{
+    auto alarm = value.lookup("alarm");
+    alarm["severity"] = severity;
+    alarm["status"] = 0;
+    alarm["message"] = message;
+}
+
+void
+processAlarmLimits(pvxs::Value& current, pvxs::Value& next)
+{
+    if (auto limits_field = current["valueAlarm"];
+        limits_field && limits_field["active"].as<bool>()) {
+        auto value = next.lookup("value").as<double>();
+
+        if (auto severity =
+              limits_field.lookup("highAlarmSeverity").as<int32_t>();
+            severity > 0) {
+            if (auto level = limits_field.lookup("highAlarmLimit").as<double>();
+                value >= level) {
+                return raiseAlarm(next, severity, "high alarm");
+            }
+        }
+        if (auto severity =
+              limits_field.lookup("lowAlarmSeverity").as<int32_t>();
+            severity > 0) {
+            if (auto level = limits_field.lookup("lowAlarmLimit").as<double>();
+                value <= level) {
+                return raiseAlarm(next, severity, "low alarm");
+            }
+        }
+        if (auto severity =
+              limits_field.lookup("highWarningSeverity").as<int32_t>();
+            severity > 0) {
+            if (auto level =
+                  limits_field.lookup("highWarningLimit").as<double>();
+                value >= level) {
+                return raiseAlarm(next, severity, "high warning");
+            }
+        }
+        if (auto severity =
+              limits_field.lookup("lowWarningSeverity").as<int32_t>();
+            severity > 0) {
+            if (auto level =
+                  limits_field.lookup("lowWarningLimit").as<double>();
+                value <= level) {
+                return raiseAlarm(next, severity, "low warning");
+            }
+        }
+        return raiseAlarm(next, 0, "");
+    }
+}
+
+void
+processControlLimits(pvxs::Value& current, pvxs::Value& next)
+{
+    if (auto control_field = current["control"]) {
+        // Is the value field being changed?
+        if (auto value_field = next["value"];
+            value_field.isMarked(true, true)) {
+            auto limit_low = control_field.lookup("limitLow").as<double>();
+            auto limit_high = control_field.lookup("limitHigh").as<double>();
+            // Do nothing unless the high limit is above the low
+            if (limit_low < limit_high) {
+                auto value = value_field.as<double>();
+                if (value > limit_high) {
+                    value_field = limit_high;
+                } else if (value < limit_low) {
+                    value_field = limit_low;
+                }
             }
         }
     }
@@ -93,10 +166,16 @@ addPV(pvxs::server::StaticSource* source,
         auto pv{ pvxs::server::SharedPV::buildReadonly() };
 
         if (read_only == 0) {
-            pv.onPut([](pvxs::server::SharedPV& pv,
+            auto id = value->id();
+            pv.onPut([id](pvxs::server::SharedPV& pv,
                           std::unique_ptr<pvxs::server::ExecOp>&& op,
                           pvxs::Value&& top) {
                 updateTimestamp(top);
+                if (id.starts_with("epics:nt/NTScalar:")) {
+                    auto current = pv.fetch();
+                    processControlLimits(current, top);
+                    processAlarmLimits(current, top);
+                }
                 pv.post(top);
                 op->reply();
             });
@@ -147,6 +226,13 @@ post(pvxs::server::StaticSource* source, char pv_name[], pvxs::Value* value)
             throw labview::lv_err(PVALVError::null_ptr);
 
         auto pv = getPV(source, pv_name);
+
+        if (value->idStartsWith("epics:nt/NTScalar:")) {
+            auto current = pv.fetch();
+            processControlLimits(current, *value);
+            processAlarmLimits(current, *value);
+        }
+
         pv.post(*value);
         delete value;
     } catch (...) {

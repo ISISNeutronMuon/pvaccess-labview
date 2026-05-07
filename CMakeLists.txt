@@ -35,7 +35,7 @@ if(WIN32)
   target_sources(pva_labview PUBLIC "${CMAKE_SOURCE_DIR}/src/dllmain.cpp")
 endif()
 
-target_compile_features(pva_labview PRIVATE cxx_std_14)
+target_compile_features(pva_labview PRIVATE cxx_std_20)
 
 # Compiler
 target_include_directories(pva_labview PRIVATE

@@ -2,80 +2,80 @@
 
 namespace labview {
 template<>
-NumType
+TypeCode
 getNumType<char>()
 {
-    return NumType::iB;
+    return TypeCode::iB;
 }
 template<>
-NumType
+TypeCode
 getNumType<int8_t>()
 {
-    return NumType::iB;
+    return TypeCode::iB;
 }
 template<>
-NumType
+TypeCode
 getNumType<int16_t>()
 {
-    return NumType::iW;
+    return TypeCode::iW;
 }
 template<>
-NumType
+TypeCode
 getNumType<int32_t>()
 {
-    return NumType::iL;
+    return TypeCode::iL;
 }
 template<>
-NumType
+TypeCode
 getNumType<int64_t>()
 {
-    return NumType::iQ;
+    return TypeCode::iQ;
 }
 template<>
-NumType
+TypeCode
 getNumType<uint8_t>()
 {
-    return NumType::uB;
+    return TypeCode::uB;
 }
 template<>
-NumType
+TypeCode
 getNumType<uint16_t>()
 {
-    return NumType::uW;
+    return TypeCode::uW;
 }
 template<>
-NumType
+TypeCode
 getNumType<uint32_t>()
 {
-    return NumType::uL;
+    return TypeCode::uL;
 }
 template<>
-NumType
+TypeCode
 getNumType<uint64_t>()
 {
-    return NumType::uQ;
+    return TypeCode::uQ;
 }
 template<>
-NumType
+TypeCode
 getNumType<float>()
 {
-    return NumType::fS;
+    return TypeCode::fS;
 }
 template<>
-NumType
+TypeCode
 getNumType<double>()
 {
-    return NumType::fD;
+    return TypeCode::fD;
 }
 template<>
-NumType
+TypeCode
 getNumType<LStrHandle>()
 {
     switch (sizeof(size_t)) {
         case 4:
-            return NumType::uL;
+            return TypeCode::uL;
         default:
-            return NumType::uQ;
+            return TypeCode::uQ;
     }
 }
 

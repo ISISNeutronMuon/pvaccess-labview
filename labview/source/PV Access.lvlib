@@ -6,6 +6,7 @@
 	<Item Name="Utilities" Type="Folder">
 		<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
 		<Item Name="Get Library Path.vi" Type="VI" URL="../Get Library Path.vi"/>
+		<Item Name="Split PV and Field Names.vi" Type="VI" URL="../Split PV and Field Names.vi"/>
 	</Item>
 	<Item Name="Pointer Base.lvclass" Type="LVClass" URL="../Pointer Base/Pointer Base.lvclass"/>
 	<Item Name="PV Data.lvlib" Type="Library" URL="../PV Data/PV Data.lvlib"/>

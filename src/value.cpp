@@ -86,6 +86,10 @@ convertTypeCode(LVTypeCode code)
             return pvxs::TypeCode::String;
         case 24:
             return pvxs::TypeCode::StringA;
+        case 25:
+            return pvxs::TypeCode::Struct;
+        case 26:
+            return pvxs::TypeCode::StructA;
         default:
             return pvxs::TypeCode::Null;
     }
@@ -125,6 +129,42 @@ createNTEnum(pvxs::Value** value)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
+createTypeDef(LVTypeCode lv_type_code, pvxs::TypeDef** def)
+{
+    try {
+        auto type_code = convertTypeCode(lv_type_code);
+        *def = new pvxs::TypeDef(type_code);
+    } catch (...) {
+        return err2code();
+    }
+    return PVALVError::no_err;
+}
+
+extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
+addChild(pvxs::TypeDef* def, char name[], pvxs::TypeDef* child)
+{
+    try {
+        def->operator+=({ child->as(name) });
+        delete child;
+    } catch (...) {
+        return err2code();
+    }
+    return PVALVError::no_err;
+}
+
+extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
+createUserDefined(pvxs::TypeDef* def, pvxs::Value** value)
+{
+    try {
+        *value = new pvxs::Value{ def->create() };
+        delete def;
+    } catch (...) {
+        return err2code();
+    }
+    return PVALVError::no_err;
+}
+
+extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 readId(const pvxs::Value* value, labview::LStrHandle id)
 {
     try {
@@ -147,8 +187,13 @@ readFieldType(const pvxs::Value* value,
         if (value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
-        auto field = value->lookup(field_name);
-        *type_code = field.type();
+        if (strlen(field_name) > 0) {
+            *type_code = value->lookup(field_name).type();
+        }
+        // Return whole value if no field name provided
+        else {
+            *type_code = value->type();
+        }
     } catch (...) {
         return err2code();
     }
@@ -171,6 +216,33 @@ readField(const pvxs::Value* value,
             throw labview::lv_err(PVALVError::type_mismatch);
 
         *result = field.as<T>();
+    } catch (...) {
+        return err2code();
+    }
+    return PVALVError::no_err;
+}
+
+extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
+listChildFields(const pvxs::Value* top,
+                const char* field_name,
+                LV1DArrayHandle<labview::LStrHandle> child_field_names)
+{
+    try {
+        if (top == nullptr)
+            throw labview::lv_err(PVALVError::null_ptr);
+        if (top->type().kind() != pvxs::Kind::Compound)
+            throw labview::lv_err(PVALVError::type_mismatch);
+
+        pvxs::Value value =
+          strlen(field_name) > 0 ? top->lookup(field_name) : *top;
+
+        auto _names = pvxs::shared_array<std::string>(value.nmembers());
+        size_t i = 0;
+        for (auto field : value.ichildren()) {
+            _names[i++].assign(value.nameOf(field));
+        }
+
+        child_field_names.from(_names.freeze());
     } catch (...) {
         return err2code();
     }

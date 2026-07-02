@@ -10,9 +10,9 @@ namespace labview {
 using ErrCode = int32_t;
 using UHandle = uint8_t**;
 
-enum NumType
+enum TypeCode : uint8_t
 {
-    iB = 1,
+    iB = 0x01,
     iW,
     iL,
     iQ,
@@ -22,10 +22,10 @@ enum NumType
     uQ,
     fS,
     fD,
-    fX,
-    cS,
-    cD,
-    cX
+    BOOL = 0x21,
+    STRING = 0x30,
+    ARRAY = 0x40,
+    CLUSTER = 0x50
 };
 
 extern "C" UHandle __cdecl
@@ -39,7 +39,7 @@ NumericArrayResize(int32_t typeCode,
                    size_t totalNewSize);
 
 template<typename T>
-NumType
+TypeCode
 getNumType();
 
 void

@@ -5,7 +5,7 @@ include(GenerateExportHeader)
 cmake_policy(SET CMP0091 NEW)
 
 project(pva_labview
-  VERSION 0.4.0
+  VERSION 0.5.0
   DESCRIPTION "A PVAccess library for LabVIEW"
   LANGUAGES C CXX
 )

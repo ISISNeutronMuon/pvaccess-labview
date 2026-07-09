@@ -1,7 +1,7 @@
-<VI_Package_Builder_Settings Version="2020.1" Created_Date="2025-04-08 18:46:00" Modified_Date="2026-07-07 16:58:26" Creator="ross titmarsh" Comments="" ID="7bae1ffd4ad90ac7e711d5ded94d8b4b">
+<VI_Package_Builder_Settings Version="2020.1" Created_Date="2025-04-08 18:46:00" Modified_Date="2026-07-09 10:17:50" Creator="ross titmarsh" Comments="" ID="651ae9e820d288616074067ee7371779">
   <Library_General_Settings>
     <Package_File_Name>epics_pvaccess</Package_File_Name>
-    <Library_Version>0.5.0.14</Library_Version>
+    <Library_Version>0.5.1.15</Library_Version>
     <Auto_Increment_Version>false</Auto_Increment_Version>
     <Library_Source_Folder>..\build\labview</Library_Source_Folder>
     <Library_Output_Folder>..\..</Library_Output_Folder>
@@ -39,18 +39,8 @@
       <Copyright/>
       <Packager>Ross Titmarsh</Packager>
       <URL>https://github.com/ISISNeutronMuon/pvaccess-labview</URL>
-      <Release_Notes>Breaking changes
-- Remove some output terminals
-- Renamed polymorhpic VI files from "method (type)" to "method - type"
-- Renamed "timestamp" to "time stamp" in all cases to match LabVIEW and EPICS usage
-- Changed internal handling of data from each class having its own private data to a top level cluster variant to support custom data structures
-- Moved "Configure Control" VIs to class methods instead of polymorphic VIs
-- Moved "To String" and "To Probe" methods to interfaces to allow custom implementations
-
-Features
-- Add custom data structures
-- Added test VI for simple server and client methods
-- Added support for configuring more control types from PV metadata</Release_Notes>
+      <Release_Notes>Fixes:
+- Fixed type mismatches when trying to set NTScalar variable type fields like "display.limitLow"</Release_Notes>
     </Description>
     <Destinations>
       <Toolkit_VIs>
@@ -270,7 +260,7 @@ Features
         <Path>..\build\labview\source</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>75440B6B8409955886FC79BF709C19A9</GUID>
+      <GUID>93AFFADDFA984728B9A186D0CDE06B66</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>0</Parent_Palette_Index>
@@ -445,7 +435,7 @@ Features
         <Path>..\build\labview\examples\User Defined Type Server.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>F5006701462FC8E6F873477FDA925290</GUID>
+      <GUID>0458B7436885B85701E50E240369CFF2</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>0</Parent_Palette_Index>
@@ -550,7 +540,7 @@ Features
         <Path>..\build\labview\source\Split PV and Field Names.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>681D56744767FE50D61011838F087F52</GUID>
+      <GUID>C31C8AFBEEA851E2301F0C5053F3F401</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>1</Parent_Palette_Index>
@@ -753,7 +743,7 @@ Features
         <Path>..\build\labview\examples\My Custom Type\Write Variant Data.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>6F0FFD3C4F2B69D6FE3502E880D29A4A</GUID>
+      <GUID>B55F963192B5607DFAF2ABE1F4068B9D</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>2</Parent_Palette_Index>
@@ -802,7 +792,7 @@ Features
         <Path>..\build\labview\source\Client\Subscription</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>8749D77B1AC7472690D1047EDD3A92D4</GUID>
+      <GUID>EFD035821B79C232EB4DB9B8D25EB787</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>2</Parent_Palette_Index>
@@ -865,7 +855,7 @@ Features
         <Path>..\build\labview\source\Pointer Base\Write Pointer.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>1DFC9043CB7EF9ACAF13A87C1C0BBF7F</GUID>
+      <GUID>5BC23307D5D304B3B21D77D2AAC9C775</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>2</Parent_Palette_Index>
@@ -1348,7 +1338,7 @@ Features
         <Path>..\build\labview\source\PV Data\Type Code is Numeric.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>C6A36F7DE28CF334ABF3F829AD732DD7</GUID>
+      <GUID>B893CD9D5129C453E001BE070D6E356C</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>2</Parent_Palette_Index>
@@ -1397,7 +1387,7 @@ Features
         <Path>..\build\labview\source\Server\Source</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>190517E2DF939AE7A6AF45D36570F057</GUID>
+      <GUID>392009D2DA80F3AB832A36B64870336A</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>4</Parent_Palette_Index>
@@ -2328,7 +2318,7 @@ Features
         <Path>..\build\labview\source\Client\Client\Put.vim</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>5049B917CD4D425595634D7482BA0B83</GUID>
+      <GUID>6173176F9623FE14191620EDE5D1B010</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>4</Parent_Palette_Index>
@@ -2797,7 +2787,7 @@ Features
         <Path>..\build\labview\source\Client\Subscription\Next value.vim</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>B5F78E36C42B44957C991666A3926370</GUID>
+      <GUID>DC8C7D36A6501F649B0796388B539BBA</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>6</Parent_Palette_Index>
@@ -2860,7 +2850,7 @@ Features
         <Path>..\build\labview\source\PV Data\Base\Write Variant Data.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>F26EE8CFE40B70AB733D3ADE51D41BEF</GUID>
+      <GUID>AB466BC3F5F720C38D7C7A1CB2386A01</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>6</Parent_Palette_Index>
@@ -3035,7 +3025,7 @@ Features
         <Path>..\build\labview\source\PV Data\Base Interface\Write Variant Data.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>DA17E519734783A67231CC400704651C</GUID>
+      <GUID>CFD143D6492BC18387EAADAFB710B27E</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>6</Parent_Palette_Index>
@@ -3140,7 +3130,7 @@ Features
         <Path>..\build\labview\source\PV Data\Has Alarm\Write Severity.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>139C02FE7628F12E639863D9ED012D5D</GUID>
+      <GUID>F69D5ACBFDF3EE98D1649C873E3BFBE8</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>6</Parent_Palette_Index>
@@ -3469,7 +3459,7 @@ Features
         <Path>..\build\labview\source\PV Data\Has Alarm Limits\Write Low Warning Severity.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>C73FBD147508ED28A32626F846465C13</GUID>
+      <GUID>7A8BFEDE176FD77D5941225790910891</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>6</Parent_Palette_Index>
@@ -3616,7 +3606,7 @@ Features
         <Path>..\build\labview\source\PV Data\Has Control Limits\Write Min Step.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>64E4CC0064FA88F2FE4E2F13B2976766</GUID>
+      <GUID>5B21044C89B5743FEABD72C067D3E4D5</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>6</Parent_Palette_Index>
@@ -3693,7 +3683,7 @@ Features
         <Path>..\build\labview\source\PV Data\Has Time Stamp\Write User Tag.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>B960681660519A6AF1584995C72D0944</GUID>
+      <GUID>3078AA678FB75585AD740E175CD69FA6</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>6</Parent_Palette_Index>
@@ -3728,7 +3718,7 @@ Features
         <Path>..\build\labview\source\PV Data\Is Probeable\To Probe.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>D92666998D29615B84DF02CA8CBE347C</GUID>
+      <GUID>ACF320A8632CD0FB96053E423A3C3229</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>6</Parent_Palette_Index>
@@ -3763,7 +3753,7 @@ Features
         <Path>..\build\labview\source\PV Data\Is Stringifiable\To String.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>0B78C7F188E4215F41C2890448694524</GUID>
+      <GUID>C5BD650C757D7A07F7F2885353C8B906</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>6</Parent_Palette_Index>
@@ -3966,7 +3956,7 @@ Features
         <Path>..\build\labview\source\PV Data\NT Base\Write Time Stamp - User Tag.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>A5788A6BCFF72AF0D9A3E809FC29465C</GUID>
+      <GUID>539E3BC0AB1F34F7356D8D2F99053F82</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>6</Parent_Palette_Index>
@@ -4099,7 +4089,7 @@ Features
         <Path>..\build\labview\source\PV Data\NT Enum\Write Index.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>33A2D476ABCDB13B5CD938AE56E9D9EB</GUID>
+      <GUID>D845D3C9F01838CDAA690F1FAD3BA968</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>6</Parent_Palette_Index>
@@ -4274,7 +4264,7 @@ Features
         <Path>..\build\labview\source\PV Data\NT Scalar\Write Value.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>67D052A73BA25F19C52ED0E2A9C5A66D</GUID>
+      <GUID>32E995215625CAC7A919B7E77F2FA9E6</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>6</Parent_Palette_Index>
@@ -5233,7 +5223,7 @@ Features
         <Path>..\build\labview\source\PV Data\NT Scalar (Numeric)\Write Display - Units.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>7263C05F59D76B5144317B2109474A04</GUID>
+      <GUID>0DF6C968F30F1855D99D9DBF7C8359BE</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>6</Parent_Palette_Index>
@@ -6150,7 +6140,7 @@ Features
         <Path>..\build\labview\source\PV Data\PV Data\Write Time Stamp.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>A920EEAC4C58914EE867EA0238CDE4E6</GUID>
+      <GUID>B1970C13C8EB04094B81503BA7BA5DCE</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>6</Parent_Palette_Index>
@@ -6213,7 +6203,7 @@ Features
         <Path>..\build\labview\source\PV Data\Type Definition\Create.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>405D4AC01F297485F3425FF4DB0A3788</GUID>
+      <GUID>6619FE38A63ABB5DE3533E520E0ABFDE</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>6</Parent_Palette_Index>
@@ -6248,7 +6238,7 @@ Features
         <Path>..\build\labview\source\PV Data\User Defined\Create.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>F82E72CB5FB258FA421D9D83DFF6CFA1</GUID>
+      <GUID>2CC40EA8B54D6338CB6CB8DC0FA77F4E</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>7</Parent_Palette_Index>
@@ -7585,7 +7575,7 @@ Features
         <Path>..\build\labview\source\Server\Server\Stop.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>FCD13A57C7156FD17B5412A8F9B33660</GUID>
+      <GUID>48E3B5F0CE73A48102D85E89C9CACA28</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>7</Parent_Palette_Index>
@@ -7690,7 +7680,7 @@ Features
         <Path>..\build\labview\source\Server\Source\Post.vim</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>06018DF30EBF7CC7D627951297503EC9</GUID>
+      <GUID>7D319E630A4429824590A4D673B80472</GUID>
     </Functions_Palette_Data>
     <Controls_Palette_Data>
       <Parent_Palette_Index>-1</Parent_Palette_Index>
@@ -7739,7 +7729,7 @@ Features
         <Path>..\build\labview\source</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>6D5367A951B23FC1D865E858FF7EBFCC</GUID>
+      <GUID>4D96ED73328114795253AB8C017C5FD8</GUID>
     </Controls_Palette_Data>
     <Controls_Palette_Data>
       <Parent_Palette_Index>0</Parent_Palette_Index>
@@ -7774,7 +7764,7 @@ Features
         <Path>..\build\labview\examples\Custom Structure.ctl</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>AACE67C9873FAC7614E5E6765F1F6B9B</GUID>
+      <GUID>C7A09B3BDCF49111BAFD64B538F32654</GUID>
     </Controls_Palette_Data>
     <Controls_Palette_Data>
       <Parent_Palette_Index>0</Parent_Palette_Index>
@@ -7809,7 +7799,7 @@ Features
         <Path>..\build\labview\source\PV Data</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>18B3E90E4F8CCE07242EE8BCE2ABA186</GUID>
+      <GUID>34365E9CC02A5D5DF51791153F0F5554</GUID>
     </Controls_Palette_Data>
     <Controls_Palette_Data>
       <Parent_Palette_Index>2</Parent_Palette_Index>
@@ -7984,7 +7974,7 @@ Features
         <Path>..\build\labview\source\PV Data\Value Fields.ctl</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>CF3006EAF80DBADAAF77F7E434A080C6</GUID>
+      <GUID>E5739003274C702BC80871C14EF8E714</GUID>
     </Controls_Palette_Data>
   </Library_Palette_Definition>
 </VI_Package_Builder_Settings>

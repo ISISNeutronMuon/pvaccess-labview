@@ -39,6 +39,7 @@
 		<Item Name="Is Stringifiable.lvclass" Type="LVClass" URL="../Is Stringifiable/Is Stringifiable.lvclass"/>
 	</Item>
 	<Item Name="Utilities" Type="Folder">
+		<Item Name="Coerce to Type Code.vim" Type="VI" URL="../Coerce to Type Code.vim"/>
 		<Item Name="Concatenate Field Names.vi" Type="VI" URL="../Concatenate Field Names.vi"/>
 		<Item Name="EPICS Time Stamp to Time Stamp.vi" Type="VI" URL="../EPICS Time Stamp to Time Stamp.vi"/>
 		<Item Name="Get Element.vi" Type="VI" URL="../Get Element.vi"/>

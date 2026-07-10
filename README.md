@@ -2,7 +2,7 @@
 
 An [EPICS PVAccess](https://docs.epics-controls.org/en/latest/pv-access/protocol.html) library for LabVIEW.
 
-![image](https://github.com/user-attachments/assets/550a4393-0b22-4a70-aa8d-83cdc91c591e)
+<img width="744" height="321" alt="image" src="https://github.com/user-attachments/assets/12134f63-0fde-41cc-904f-1c79bb0fd470" />
 
 ## Requirements
 

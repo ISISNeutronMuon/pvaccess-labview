@@ -25,94 +25,24 @@ wget https://github.com/ISISNeutronMuon/pvaccess-labview/releases/download/v<VER
 opkg install pva_labview_<VERSION>.ipk
 ```
 
+## Usage
+
+Find the the PVAccess palette under the "Data Communication" palette in LabVIEW.
+
+Examples of many uses cases can be found using the NI Example Finder, browse via the "Directory Structure" under "EPICS -> PVAccess". Or in the [examples directory](./labview/examples).
+
+### Server
+
+A [minimal example](<./labview/examples/Simple Server.vi>) of starting a PVAccess server with a single NTScalar(Float64) PV, **fetch**ing the current value to a front panel indicator every 100ms, and closing the server after a stop button is clicked.
+
+![A minimal PVAccess server example](./docs/assets/server.png)
+
+### Client
+
+A [minimal example](<./labview/examples/Simple Client.vi>) of a PVAccess client **get**ing a PV, **put**ting the double of the value back, then **get**ing it again.
+
+![A minimal PVAccess client example](./docs/assets/client.png)
+
 ## Development
 
-### Prerequisits
-
-#### Windows
-
-- Install the [Microsoft C++ Build Tools](https://learn.microsoft.com/en-us/cpp/build/building-on-the-command-line)
-
-- Install [Chocolatey](Chocolatey)
-
-- Install Make, CMake and Perl
-  ```ps1
-  choco install make cmake strawberryperl
-  ```
-
-- Launch the "Developer Command Prompt for VS", not PowerShell, and run the subsequent commands from it
-
-- Activate the [64-bit environment](https://learn.microsoft.com/en-us/cpp/build/building-on-the-command-line#developer_command_file_locations)
-
-#### Linux
-
-- Install Make, CMake, Perl and libevent using your distribution's package manager
-  ```sh
-  sudo apt install make cmake perl libevent-dev
-  ```
-
-#### NI Linux RT
-
-- Install build dependencies
-  ```sh
-  opkg install
-    git \
-    packagegroup-core-buildessential \
-    perl-modules \
-    libevent-dev \
-    cmake
-  ```
-
-### Building dependencies
-
-#### Windows
-
-- Build EPICS Base
-  ```bat
-  set EPICS_HOST_ARCH=windows-x64-static
-  make -C epics-base
-  ```
-
-- Build PVXS
-  ```bat
-  echo EPICS_BASE = $(TOP)/../epics-base > pvxs/configure/RELEASE.local
-  make -C pvxs/bundle libevent
-  make -C pvxs
-  ```
-  See the [PVXS docs](https://epics-base.github.io/pvxs/building.html) for more details
-
-#### Linux and NI Linux RT
-
-- Build EPICS Base
-  ```sh
-  make -C epics-base
-  ```
-
-- Build PVXS
-  ```sh
-  cat <<EOF > pvxs/configure/RELEASE.local
-  EPICS_BASE = \$(TOP)/../epics-base
-  EOF
-  make -C pvxs
-  ```
-
-### Building this library
-
-- Windows
-  ```ps1
-  cmake --preset=windows-x64
-  cmake --build --preset=windows-x64
-  ```
-- Linux
-  ```sh
-  cmake --preset=linux-x86_64
-  cmake --build --preset=linux-x86_64
-  ```
-
-### Packaging NI Linux RT Package
-These command must be run on an NI Linux RT target
-```sh
-cmake --preset=nilrt
-cmake --build --preset=nilrt
-cpack --preset=nilrt
-```
+See [development.md](./docs/development.md).

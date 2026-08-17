@@ -75,7 +75,7 @@
 				<Property Name="Bld_localDestDirType" Type="Str">relativeToCommon</Property>
 				<Property Name="Bld_previewCacheID" Type="Str">{A8D6EAE3-F668-4BA8-B98D-987811F628C7}</Property>
 				<Property Name="Bld_removeVIObj" Type="Int">2</Property>
-				<Property Name="Bld_version.build" Type="Int">12</Property>
+				<Property Name="Bld_version.build" Type="Int">13</Property>
 				<Property Name="Bld_version.major" Type="Int">1</Property>
 				<Property Name="Destination[0].destName" Type="Str">Destination Directory</Property>
 				<Property Name="Destination[0].path" Type="Path">../build/labview</Property>
@@ -83,7 +83,7 @@
 				<Property Name="Destination[1].destName" Type="Str">Support Directory</Property>
 				<Property Name="Destination[1].path" Type="Path">../build/labview/data</Property>
 				<Property Name="DestinationCount" Type="Int">2</Property>
-				<Property Name="Source[0].itemID" Type="Str">{93883F78-19D2-4999-8878-0A752227FDD9}</Property>
+				<Property Name="Source[0].itemID" Type="Str">{0CE544D8-9B8A-4C19-BBDA-6685D41469A4}</Property>
 				<Property Name="Source[0].type" Type="Str">Container</Property>
 				<Property Name="Source[1].destinationIndex" Type="Int">0</Property>
 				<Property Name="Source[1].itemID" Type="Ref">/My Computer/PV Access.lvlib/PVA Client.lvlib/Client.lvclass/Close.vi</Property>

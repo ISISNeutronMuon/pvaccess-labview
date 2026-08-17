@@ -1,7 +1,7 @@
-<VI_Package_Builder_Settings Version="2020.1" Created_Date="2025-04-08 18:46:00" Modified_Date="2026-07-10 14:34:02" Creator="ross titmarsh" Comments="" ID="4890794abd2468e73d42b60a11e15d74">
+<VI_Package_Builder_Settings Version="2020.1" Created_Date="2025-04-08 18:46:00" Modified_Date="2026-08-17 10:46:01" Creator="ross titmarsh" Comments="" ID="641f92a2645d6051b457a5c0987d334b">
   <Library_General_Settings>
     <Package_File_Name>epics_pvaccess</Package_File_Name>
-    <Library_Version>0.5.2.20</Library_Version>
+    <Library_Version>0.5.3.23</Library_Version>
     <Auto_Increment_Version>false</Auto_Increment_Version>
     <Library_Source_Folder>..\build\labview</Library_Source_Folder>
     <Library_Output_Folder>..\..</Library_Output_Folder>
@@ -40,7 +40,8 @@
       <Packager>Ross Titmarsh</Packager>
       <URL>https://github.com/ISISNeutronMuon/pvaccess-labview</URL>
       <Release_Notes>Fixes:
-- Reverted the palette after VIPM mangled it</Release_Notes>
+- Added a different DLL search path when using the runtime engine
+- Fixed custom error codes not being picked up by LabVIEW</Release_Notes>
     </Description>
     <Destinations>
       <Toolkit_VIs>
@@ -60,7 +61,7 @@
       </Custom_Probes>
       <Custom_Errors>
         <Preserve_Hierarchy>true</Preserve_Hierarchy>
-        <Path/>
+        <Path>&lt;project&gt;\errors</Path>
       </Custom_Errors>
       <Help_Files>
         <Preserve_Hierarchy>true</Preserve_Hierarchy>
@@ -116,14 +117,74 @@
         <Additional_Destination_Index>0</Additional_Destination_Index>
       </Destination_Overrides>
       <Destination_Overrides>
-        <Path>examples</Path>
+        <Path>errors/pvaccess-errors.txt</Path>
+        <Destination>3</Destination>
+        <Additional_Destination>false</Additional_Destination>
+        <Additional_Destination_Index>0</Additional_Destination_Index>
+      </Destination_Overrides>
+      <Destination_Overrides>
+        <Path>examples/Client Monitor.vi</Path>
         <Destination>1</Destination>
         <Additional_Destination>false</Additional_Destination>
         <Additional_Destination_Index>0</Additional_Destination_Index>
       </Destination_Overrides>
       <Destination_Overrides>
-        <Path>errors</Path>
-        <Destination>3</Destination>
+        <Path>examples/Client.vi</Path>
+        <Destination>1</Destination>
+        <Additional_Destination>false</Additional_Destination>
+        <Additional_Destination_Index>0</Additional_Destination_Index>
+      </Destination_Overrides>
+      <Destination_Overrides>
+        <Path>examples/Enum Client.vi</Path>
+        <Destination>1</Destination>
+        <Additional_Destination>false</Additional_Destination>
+        <Additional_Destination_Index>0</Additional_Destination_Index>
+      </Destination_Overrides>
+      <Destination_Overrides>
+        <Path>examples/Enum Server.vi</Path>
+        <Destination>1</Destination>
+        <Additional_Destination>false</Additional_Destination>
+        <Additional_Destination_Index>0</Additional_Destination_Index>
+      </Destination_Overrides>
+      <Destination_Overrides>
+        <Path>examples/Probe.vi</Path>
+        <Destination>1</Destination>
+        <Additional_Destination>false</Additional_Destination>
+        <Additional_Destination_Index>0</Additional_Destination_Index>
+      </Destination_Overrides>
+      <Destination_Overrides>
+        <Path>examples/Server.vi</Path>
+        <Destination>1</Destination>
+        <Additional_Destination>false</Additional_Destination>
+        <Additional_Destination_Index>0</Additional_Destination_Index>
+      </Destination_Overrides>
+      <Destination_Overrides>
+        <Path>examples/Simple Client.vi</Path>
+        <Destination>1</Destination>
+        <Additional_Destination>false</Additional_Destination>
+        <Additional_Destination_Index>0</Additional_Destination_Index>
+      </Destination_Overrides>
+      <Destination_Overrides>
+        <Path>examples/Simple Server.vi</Path>
+        <Destination>1</Destination>
+        <Additional_Destination>false</Additional_Destination>
+        <Additional_Destination_Index>0</Additional_Destination_Index>
+      </Destination_Overrides>
+      <Destination_Overrides>
+        <Path>examples/User Defined Type Class Server.vi</Path>
+        <Destination>1</Destination>
+        <Additional_Destination>false</Additional_Destination>
+        <Additional_Destination_Index>0</Additional_Destination_Index>
+      </Destination_Overrides>
+      <Destination_Overrides>
+        <Path>examples/User Defined Type Server.vi</Path>
+        <Destination>1</Destination>
+        <Additional_Destination>false</Additional_Destination>
+        <Additional_Destination_Index>0</Additional_Destination_Index>
+      </Destination_Overrides>
+      <Destination_Overrides>
+        <Path>examples/My Custom Type</Path>
+        <Destination>1</Destination>
         <Additional_Destination>false</Additional_Destination>
         <Additional_Destination_Index>0</Additional_Destination_Index>
       </Destination_Overrides>
@@ -498,7 +559,7 @@
         <Path>..\build\labview\source\PV Data\Is Probeable\To Probe.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>720EED4F3EA929D4E29B7C8ADC43B362</GUID>
+      <GUID>DE8B110EFFBF375E5A18144D4455467F</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>0</Parent_Palette_Index>
@@ -547,7 +608,7 @@
         <Path>..\build\labview\source\PV Data\Time Stamp to EPICS Time Stamp.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>AE24B4F5C6499D0BB2DB4ADDECF2BF70</GUID>
+      <GUID>881185032CA72AE4AF5BAC023DEAB6E8</GUID>
     </Functions_Palette_Data>
   </Library_Palette_Definition>
 </VI_Package_Builder_Settings>

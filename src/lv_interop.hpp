@@ -116,12 +116,7 @@ class LStrHandle : public LVArrayBaseHandle<char, 1>
 
     operator std::string() const
     {
-        size_t count = this->count();
-        // Allocate new char array
-        auto cstr = new char[count];
-        // Copy the LStrHandle to it
-        memcpy(cstr, (*this->handle)->elements, count);
-        return std::string{ cstr, count };
+        return std::string((*this->handle)->elements, this->count());
     }
 
     void from(std::string str)

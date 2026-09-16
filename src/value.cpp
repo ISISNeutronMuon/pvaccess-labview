@@ -7,33 +7,6 @@
 #include "utils.hpp"
 #include "value.hpp"
 
-/* Convert format strings to form and precision.
-It ignores the minimum width before the decimal point.
-F4.2  -> { "Decimal", 2 }
-E10.3 -> { "Exponential", 3 }
-*/
-std::tuple<DisplayForm, int32_t>
-formatToFormat(std::string format)
-{
-    auto form = DisplayForm::Default;
-    switch (std::tolower(format[0])) {
-        case 'f':
-            form = DisplayForm::Decimal;
-            break;
-        case 'e':
-            form = DisplayForm::Exponential;
-            break;
-        default:
-            return { form, -1 };
-    }
-
-    // Find decimal point, then the precision is everything after that.
-    if (auto i = format.find_first_of("."))
-        return { form, std::stoi(format.substr(i + 1)) };
-
-    return { form, -1 };
-}
-
 pvxs::TypeCode
 convertTypeCode(LVTypeCode code)
 {
@@ -283,90 +256,6 @@ writeTimestamp(const pvxs::Value* value,
         field["secondsPastEpoch"] = timestamp->secondsPastEpoch;
         field["nanoseconds"] = timestamp->nanoseconds;
         field["userTag"] = timestamp->userTag;
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
-}
-
-extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-readAlarmStatus(const pvxs::Value* value, int16_t* has_alarm, Alarm* alarm)
-{
-    *has_alarm = false;
-    try {
-        if (value == nullptr)
-            throw labview::lv_err(PVALVError::null_ptr);
-
-        if (auto field = (*value)["alarm"]) {
-            *alarm = {
-                field.lookup("severity").as<int32_t>(),
-                field.lookup("status").as<int32_t>(),
-                field.lookup("message").as<std::string>(),
-            };
-            *has_alarm = true;
-        }
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
-}
-
-extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-writeAlarmStatus(const pvxs::Value* value, Alarm* alarm)
-{
-    try {
-        if (value == nullptr)
-            throw labview::lv_err(PVALVError::null_ptr);
-
-        auto field = value->lookup("alarm");
-        field["severity"] = alarm->severity;
-        field["status"] = alarm->status;
-        field["message"] = alarm->message;
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
-}
-
-extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-readDisplayFormat(const pvxs::Value* value,
-                  int32_t* precision,
-                  DisplayForm* form)
-{
-    try {
-        if (value == nullptr)
-            throw labview::lv_err(PVALVError::null_ptr);
-
-        if (auto field = (*value)["display"]) {
-            if (auto form_field = field["form"]) {
-                *precision = field.lookup("precision").as<int32_t>();
-                *form = form_field.lookup("index").as<DisplayForm>();
-            } else if (auto format = field["format"]) {
-                std::tie(*form, *precision) =
-                  formatToFormat(format.as<std::string>());
-            }
-        }
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
-}
-
-extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-writeDisplayFormat(const pvxs::Value* value,
-                   int32_t precision,
-                   DisplayForm form)
-{
-    try {
-        if (value == nullptr)
-            throw labview::lv_err(PVALVError::null_ptr);
-
-        if (auto field = (*value)["display"]) {
-            if (auto field_form = field["form.index"])
-                field_form = form;
-            if (auto field_precision = field["precision"])
-                field_precision = precision;
-        }
     } catch (...) {
         return err2code();
     }

@@ -77,7 +77,7 @@ createNTScalar(const LVTypeCode lv_type_code,
                const int16_t alarm_limit,
                pvxs::Value** value)
 {
-    try {
+    return err2code([&] {
         auto type_code = convertTypeCode(lv_type_code);
         auto def =
           pvxs::nt::NTScalar{
@@ -85,72 +85,54 @@ createNTScalar(const LVTypeCode lv_type_code,
           }
             .build();
         *value = new pvxs::Value{ def.create() };
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 createNTEnum(pvxs::Value** value)
 {
-    try {
+    return err2code([&] {
         auto def = pvxs::nt::NTEnum{}.build();
         *value = new pvxs::Value{ def.create() };
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 createTypeDef(const LVTypeCode lv_type_code, pvxs::TypeDef** def)
 {
-    try {
+    return err2code([&] {
         auto type_code = convertTypeCode(lv_type_code);
         *def = new pvxs::TypeDef(type_code);
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 addChild(pvxs::TypeDef* def, const char name[], pvxs::TypeDef* child)
 {
-    try {
+    return err2code([&] {
         std::unique_ptr<pvxs::TypeDef> guard(child);
         def->operator+=({ child->as(name) });
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 createUserDefined(pvxs::TypeDef* def, pvxs::Value** value)
 {
-    try {
+    return err2code([&] {
         std::unique_ptr<pvxs::TypeDef> guard(def);
         *value = new pvxs::Value{ def->create() };
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 readId(const pvxs::Value* value, labview::LStrHandle id)
 {
-    try {
+    return err2code([&] {
         if (value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
         id = value->id();
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
@@ -158,7 +140,7 @@ readFieldType(const pvxs::Value* value,
               const char* field_name,
               pvxs::TypeCode* type_code)
 {
-    try {
+    return err2code([&] {
         if (value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
@@ -169,10 +151,7 @@ readFieldType(const pvxs::Value* value,
         else {
             *type_code = value->type();
         }
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 template<typename T>
@@ -182,7 +161,7 @@ readField(const pvxs::Value* value,
           const pvxs::TypeCode type_code,
           T* result)
 {
-    try {
+    return err2code([&] {
         if (value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
@@ -191,10 +170,7 @@ readField(const pvxs::Value* value,
             throw labview::lv_err(PVALVError::type_mismatch);
 
         *result = field.as<T>();
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
@@ -202,7 +178,7 @@ listChildFields(const pvxs::Value* top,
                 const char* field_name,
                 LV1DArrayHandle<labview::LStrHandle> child_field_names)
 {
-    try {
+    return err2code([&] {
         if (top == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
         if (top->type().kind() != pvxs::Kind::Compound)
@@ -218,10 +194,7 @@ listChildFields(const pvxs::Value* top,
         }
 
         child_field_names.from(_names.freeze());
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
@@ -229,7 +202,7 @@ readTimestamp(const pvxs::Value* value,
               const char* field_name,
               Timestamp* timestamp)
 {
-    try {
+    return err2code([&] {
         if (value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
@@ -239,10 +212,7 @@ readTimestamp(const pvxs::Value* value,
             field.lookup("nanoseconds").as<int32_t>(),
             field.lookup("userTag").as<int32_t>(),
         };
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
@@ -250,7 +220,7 @@ writeTimestamp(const pvxs::Value* value,
                const char* field_name,
                const Timestamp* timestamp)
 {
-    try {
+    return err2code([&] {
         if (value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
@@ -258,10 +228,7 @@ writeTimestamp(const pvxs::Value* value,
         field["secondsPastEpoch"] = timestamp->secondsPastEpoch;
         field["nanoseconds"] = timestamp->nanoseconds;
         field["userTag"] = timestamp->userTag;
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 #define READ_FN(NAME, TYPE, TYPE_CODE)                                         \
@@ -304,7 +271,7 @@ writeField(pvxs::Value* value,
            const pvxs::TypeCode type_code,
            const T new_value)
 {
-    try {
+    return err2code([&] {
         if (value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
@@ -313,10 +280,7 @@ writeField(pvxs::Value* value,
             throw labview::lv_err(PVALVError::type_mismatch);
 
         value->update(field_name, new_value);
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 #define WRITE_FN(NAME, TYPE, TYPE_CODE)                                        \
@@ -356,13 +320,10 @@ WRITE_FN(StringArray,
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 deleteValue(const pvxs::Value* value)
 {
-    try {
+    return err2code([&] {
         if (value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
         delete value;
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }

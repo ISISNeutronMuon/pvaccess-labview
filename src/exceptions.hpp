@@ -1,5 +1,7 @@
 #pragma once
 
+#include <pvxs/client.h>
+
 #include "lv_interop.hpp"
 
 enum PVALVError : labview::ErrCode
@@ -16,5 +18,24 @@ enum PVALVError : labview::ErrCode
     empty_pv_name = 502458,
 };
 
+template<typename F>
 labview::ErrCode
-err2code();
+err2code(F&& fn)
+{
+    try {
+        fn();
+        return PVALVError::no_err;
+    } catch (const labview::lv_err& e) {
+        return e.code;
+    } catch (const pvxs::NoConvert&) {
+        return PVALVError::cannot_convert_value;
+    } catch (const pvxs::LookupError&) {
+        return PVALVError::field_missing;
+    } catch (const pvxs::client::Interrupted&) {
+        return PVALVError::interrupted;
+    } catch (const pvxs::client::Timeout&) {
+        return PVALVError::timeout;
+    } catch (...) {
+        return PVALVError::unspecified;
+    }
+}

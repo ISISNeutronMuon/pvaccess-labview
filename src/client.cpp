@@ -11,25 +11,19 @@
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 createClient(pvxs::client::Context** client)
 {
-    try {
+    return err2code([&] {
         *client = new pvxs::client::Context(pvxs::client::Context::fromEnv());
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 closeClient(const pvxs::client::Context* client)
 {
-    try {
+    return err2code([&] {
         if (client == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
         delete client;
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
@@ -38,17 +32,14 @@ get(pvxs::client::Context* client,
     const double timeout,
     pvxs::Value** value)
 {
-    try {
+    return err2code([&] {
         if (client == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
         if (strlen(pv_name) == 0)
             throw labview::lv_err(PVALVError::empty_pv_name);
 
         *value = new pvxs::Value{ client->get(pv_name).exec()->wait(timeout) };
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
@@ -57,7 +48,7 @@ put(pvxs::client::Context* client,
     const double timeout,
     pvxs::Value* value)
 {
-    try {
+    return err2code([&] {
         if (client == nullptr || value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
         if (strlen(pv_name) == 0)
@@ -71,10 +62,7 @@ put(pvxs::client::Context* client,
           })
           .exec()
           ->wait(timeout);
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 struct SubHandle
@@ -85,7 +73,7 @@ struct SubHandle
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 monitor(pvxs::client::Context* client, const char pv_name[], SubHandle** handle)
 {
-    try {
+    return err2code([&] {
         if (client == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
         if (strlen(pv_name) == 0)
@@ -93,10 +81,7 @@ monitor(pvxs::client::Context* client, const char pv_name[], SubHandle** handle)
 
         *handle = new SubHandle;
         (*handle)->ptr = client->monitor(pv_name).maskDisconnected().exec();
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
@@ -106,7 +91,7 @@ subscriptionNextValue(const SubHandle* handle,
                       pvxs::Value** value,
                       int16_t* timed_out)
 {
-    try {
+    return err2code([&] {
         if (handle == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
         auto sub = handle->ptr;
@@ -131,16 +116,13 @@ subscriptionNextValue(const SubHandle* handle,
         } else {
             *timed_out = 1;
         }
-    } catch (std::exception& e) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 closeSubscription(const SubHandle* handle)
 {
-    try {
+    return err2code([&] {
         if (handle == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
         auto sub = handle->ptr;
@@ -149,8 +131,5 @@ closeSubscription(const SubHandle* handle)
 
         sub->cancel();
         delete handle;
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }

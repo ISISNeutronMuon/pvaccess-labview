@@ -26,7 +26,6 @@ endif()
 
 add_library(pva_labview MODULE
   src/lv_interop.cpp
-  src/exceptions.cpp
   src/server.cpp
   src/client.cpp
   src/value.cpp

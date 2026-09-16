@@ -11,58 +11,46 @@
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 createServer(pvxs::server::Server** server, pvxs::server::StaticSource** source)
 {
-    try {
+    return err2code([&] {
         *server = new pvxs::server::Server(pvxs::server::Server::fromEnv());
         *source =
           new pvxs::server::StaticSource(pvxs::server::StaticSource::build());
         (**server).addSource("labview", (**source).source());
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 startServer(pvxs::server::Server* server)
 {
-    try {
+    return err2code([&] {
         if (server == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
         server->start();
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 stopServer(pvxs::server::Server* server)
 {
-    try {
+    return err2code([&] {
         if (server == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
         server->stop();
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 closeServer(pvxs::server::Server* server)
 {
-    try {
+    return err2code([&] {
         if (server == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
         server->stop();
         delete server;
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 void
@@ -163,7 +151,7 @@ addPV(pvxs::server::StaticSource* source,
       pvxs::Value* value,
       const int16_t read_only)
 {
-    try {
+    return err2code([&] {
         if (source == nullptr || value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
         if (strlen(pv_name) == 0)
@@ -190,10 +178,7 @@ addPV(pvxs::server::StaticSource* source,
 
         pv.open(*value);
         source->add(pv_name, pv);
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 pvxs::server::SharedPV
@@ -214,7 +199,7 @@ fetch(pvxs::server::StaticSource* source,
       const char pv_name[],
       pvxs::Value** value)
 {
-    try {
+    return err2code([&] {
         if (source == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
         if (strlen(pv_name) == 0)
@@ -222,10 +207,7 @@ fetch(pvxs::server::StaticSource* source,
 
         auto pv = getPV(source, pv_name);
         *value = new pvxs::Value{ pv.fetch() };
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
@@ -233,7 +215,7 @@ post(pvxs::server::StaticSource* source,
      const char pv_name[],
      pvxs::Value* value)
 {
-    try {
+    return err2code([&] {
         if (source == nullptr || value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
         if (strlen(pv_name) == 0)
@@ -249,8 +231,5 @@ post(pvxs::server::StaticSource* source,
         }
 
         pv.post(*value);
-    } catch (...) {
-        return err2code();
-    }
-    return PVALVError::no_err;
+    });
 }

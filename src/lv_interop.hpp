@@ -83,7 +83,7 @@ class LVArrayBaseHandle
         funcWrapper(DSCheckHandle(this->handle));
         // Resize handle
         funcWrapper(NumericArrayResize(
-          getNumType<T>(), 1, (UHandle*)(&this->handle), size * sizeof(T*)));
+          getNumType<T>(), 1, (UHandle*)(&this->handle), size));
         (*this->handle)->count = static_cast<int32_t>(size);
     }
 

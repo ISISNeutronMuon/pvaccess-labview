@@ -1,3 +1,5 @@
+#include <memory>
+
 #include <pvxs/nt.h>
 #include <pvxs/server.h>
 #include <pvxs/sharedpv.h>
@@ -117,8 +119,8 @@ extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 addChild(pvxs::TypeDef* def, const char name[], pvxs::TypeDef* child)
 {
     try {
+        std::unique_ptr<pvxs::TypeDef> guard(child);
         def->operator+=({ child->as(name) });
-        delete child;
     } catch (...) {
         return err2code();
     }
@@ -129,8 +131,8 @@ extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 createUserDefined(pvxs::TypeDef* def, pvxs::Value** value)
 {
     try {
+        std::unique_ptr<pvxs::TypeDef> guard(def);
         *value = new pvxs::Value{ def->create() };
-        delete def;
     } catch (...) {
         return err2code();
     }

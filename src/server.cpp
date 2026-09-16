@@ -1,3 +1,5 @@
+#include <memory>
+
 #include <pvxs/nt.h>
 #include <pvxs/server.h>
 #include <pvxs/sharedpv.h>
@@ -165,6 +167,7 @@ addPV(pvxs::server::StaticSource* source,
         if (source == nullptr || value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
+        std::unique_ptr<pvxs::Value> guard(value);
         auto pv{ pvxs::server::SharedPV::buildReadonly() };
 
         if (read_only == 0) {
@@ -185,7 +188,6 @@ addPV(pvxs::server::StaticSource* source,
 
         pv.open(*value);
         source->add(pv_name, pv);
-        delete value;
     } catch (...) {
         return err2code();
     }
@@ -231,6 +233,7 @@ post(pvxs::server::StaticSource* source,
         if (source == nullptr || value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
+        std::unique_ptr<pvxs::Value> guard(value);
         auto pv = getPV(source, pv_name);
 
         if (value->idStartsWith("epics:nt/NTScalar:")) {
@@ -240,7 +243,6 @@ post(pvxs::server::StaticSource* source,
         }
 
         pv.post(*value);
-        delete value;
     } catch (...) {
         return err2code();
     }

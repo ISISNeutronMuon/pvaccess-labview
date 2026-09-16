@@ -1,4 +1,5 @@
 #include <chrono>
+#include <memory>
 
 #include <pvxs/client.h>
 
@@ -57,13 +58,14 @@ put(pvxs::client::Context* client,
         if (client == nullptr || value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
 
+        std::unique_ptr<pvxs::Value> guard(value);
+
         client->put(pv_name)
           .build([value](pvxs::Value&& prototype) {
               return prototype.assign(*value);
           })
           .exec()
           ->wait(timeout);
-        delete value;
     } catch (...) {
         return err2code();
     }

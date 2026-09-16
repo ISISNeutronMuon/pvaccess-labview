@@ -1,5 +1,6 @@
 #include <chrono>
 #include <memory>
+#include <thread>
 
 #include <pvxs/client.h>
 
@@ -115,6 +116,8 @@ subscriptionNextValue(const SubHandle* handle,
         do {
             t1 = std::chrono::system_clock::now().time_since_epoch();
             update = sub->pop();
+            if (!update)
+                std::this_thread::sleep_for(std::chrono::milliseconds(10));
         } while (!update && (t1 - t0 < timeoutDuration));
         if (update) {
             pv_name = sub->name();

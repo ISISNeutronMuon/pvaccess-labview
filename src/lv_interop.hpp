@@ -50,8 +50,8 @@ class lv_err : public std::runtime_error
   public:
     ErrCode code;
     lv_err(ErrCode code)
-      : code(code)
-      , std::runtime_error("LabVIEW error")
+      : std::runtime_error("LabVIEW error")
+      , code(code)
     {
     }
 };

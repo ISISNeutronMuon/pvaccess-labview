@@ -76,9 +76,7 @@ struct SubHandle
 };
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-monitor(pvxs::client::Context* client,
-        const char pv_name[],
-        SubHandle** handle)
+monitor(pvxs::client::Context* client, const char pv_name[], SubHandle** handle)
 {
     try {
         if (client == nullptr)

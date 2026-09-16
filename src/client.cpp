@@ -18,7 +18,7 @@ createClient(pvxs::client::Context** client)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-closeClient(pvxs::client::Context* client)
+closeClient(const pvxs::client::Context* client)
 {
     try {
         if (client == nullptr)
@@ -32,8 +32,8 @@ closeClient(pvxs::client::Context* client)
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 get(pvxs::client::Context* client,
-    char pv_name[],
-    double timeout,
+    const char pv_name[],
+    const double timeout,
     pvxs::Value** value)
 {
     try {
@@ -49,8 +49,8 @@ get(pvxs::client::Context* client,
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 put(pvxs::client::Context* client,
-    char pv_name[],
-    double timeout,
+    const char pv_name[],
+    const double timeout,
     pvxs::Value* value)
 {
     try {
@@ -76,7 +76,9 @@ struct SubHandle
 };
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-monitor(pvxs::client::Context* client, char pv_name[], SubHandle** handle)
+monitor(pvxs::client::Context* client,
+        const char pv_name[],
+        SubHandle** handle)
 {
     try {
         if (client == nullptr)
@@ -92,8 +94,8 @@ monitor(pvxs::client::Context* client, char pv_name[], SubHandle** handle)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-subscriptionNextValue(SubHandle* handle,
-                      double timeout,
+subscriptionNextValue(const SubHandle* handle,
+                      const double timeout,
                       labview::LStrHandle pv_name,
                       pvxs::Value** value,
                       int16_t* timed_out)
@@ -128,7 +130,7 @@ subscriptionNextValue(SubHandle* handle,
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-closeSubscription(SubHandle* handle)
+closeSubscription(const SubHandle* handle)
 {
     try {
         if (handle == nullptr)

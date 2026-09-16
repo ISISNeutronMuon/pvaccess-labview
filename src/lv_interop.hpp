@@ -102,7 +102,7 @@ class LStrHandle : public LVArrayBaseHandle<char, 1>
 {
   public:
     using LVArrayBaseHandle::LVArrayBaseHandle;
-    LStrHandle(std::string str)
+    LStrHandle(const std::string& str)
       : LVArrayBaseHandle()
     {
         this->from(str);
@@ -119,7 +119,7 @@ class LStrHandle : public LVArrayBaseHandle<char, 1>
         return std::string((*this->handle)->elements, this->count());
     }
 
-    void from(std::string str)
+    void from(const std::string& str)
     {
         auto count = str.length();
         this->resize(count);

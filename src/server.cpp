@@ -78,7 +78,9 @@ updateTimestamp(pvxs::Value& value)
 }
 
 void
-raiseAlarm(pvxs::Value& value, int32_t severity, std::string message)
+raiseAlarm(const pvxs::Value& value,
+           const int32_t severity,
+           const std::string& message)
 {
     auto alarm = value.lookup("alarm");
     alarm["severity"] = severity;
@@ -87,7 +89,7 @@ raiseAlarm(pvxs::Value& value, int32_t severity, std::string message)
 }
 
 void
-processAlarmLimits(pvxs::Value& current, pvxs::Value& next)
+processAlarmLimits(const pvxs::Value& current, pvxs::Value& next)
 {
     if (auto limits_field = current["valueAlarm"];
         limits_field && limits_field["active"].as<bool>()) {
@@ -132,7 +134,7 @@ processAlarmLimits(pvxs::Value& current, pvxs::Value& next)
 }
 
 void
-processControlLimits(pvxs::Value& current, pvxs::Value& next)
+processControlLimits(const pvxs::Value& current, pvxs::Value& next)
 {
     if (auto control_field = current["control"]) {
         // Is the value field being changed?
@@ -155,9 +157,9 @@ processControlLimits(pvxs::Value& current, pvxs::Value& next)
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 addPV(pvxs::server::StaticSource* source,
-      char pv_name[],
+      const char pv_name[],
       pvxs::Value* value,
-      int16_t read_only)
+      const int16_t read_only)
 {
     try {
         if (source == nullptr || value == nullptr)
@@ -191,7 +193,7 @@ addPV(pvxs::server::StaticSource* source,
 }
 
 pvxs::server::SharedPV
-getPV(pvxs::server::StaticSource* source, std::string pv_name)
+getPV(pvxs::server::StaticSource* source, const std::string& pv_name)
 {
     if (source == nullptr)
         throw labview::lv_err(PVALVError::null_ptr);
@@ -204,7 +206,9 @@ getPV(pvxs::server::StaticSource* source, std::string pv_name)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-fetch(pvxs::server::StaticSource* source, char pv_name[], pvxs::Value** value)
+fetch(pvxs::server::StaticSource* source,
+      const char pv_name[],
+      pvxs::Value** value)
 {
     try {
         if (source == nullptr)
@@ -219,7 +223,9 @@ fetch(pvxs::server::StaticSource* source, char pv_name[], pvxs::Value** value)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-post(pvxs::server::StaticSource* source, char pv_name[], pvxs::Value* value)
+post(pvxs::server::StaticSource* source,
+     const char pv_name[],
+     pvxs::Value* value)
 {
     try {
         if (source == nullptr || value == nullptr)

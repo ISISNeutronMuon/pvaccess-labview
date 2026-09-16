@@ -8,7 +8,7 @@
 #include "value.hpp"
 
 pvxs::TypeCode
-convertTypeCode(LVTypeCode code)
+convertTypeCode(const LVTypeCode code)
 {
     switch (code) {
         case 1:
@@ -69,10 +69,10 @@ convertTypeCode(LVTypeCode code)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-createNTScalar(LVTypeCode lv_type_code,
-               int16_t display,
-               int16_t control,
-               int16_t alarm_limit,
+createNTScalar(const LVTypeCode lv_type_code,
+               const int16_t display,
+               const int16_t control,
+               const int16_t alarm_limit,
                pvxs::Value** value)
 {
     try {
@@ -102,7 +102,7 @@ createNTEnum(pvxs::Value** value)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-createTypeDef(LVTypeCode lv_type_code, pvxs::TypeDef** def)
+createTypeDef(const LVTypeCode lv_type_code, pvxs::TypeDef** def)
 {
     try {
         auto type_code = convertTypeCode(lv_type_code);
@@ -114,7 +114,7 @@ createTypeDef(LVTypeCode lv_type_code, pvxs::TypeDef** def)
 }
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-addChild(pvxs::TypeDef* def, char name[], pvxs::TypeDef* child)
+addChild(pvxs::TypeDef* def, const char name[], pvxs::TypeDef* child)
 {
     try {
         def->operator+=({ child->as(name) });
@@ -246,7 +246,7 @@ readTimestamp(const pvxs::Value* value,
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
 writeTimestamp(const pvxs::Value* value,
                const char* field_name,
-               Timestamp* timestamp)
+               const Timestamp* timestamp)
 {
     try {
         if (value == nullptr)
@@ -297,10 +297,10 @@ READ_FN(StringArray,
 
 template<typename T>
 labview::ErrCode
-writeField(pvxs::Value* const value,
+writeField(pvxs::Value* value,
            const char* field_name,
            const pvxs::TypeCode type_code,
-           T new_value)
+           const T new_value)
 {
     try {
         if (value == nullptr)
@@ -319,7 +319,7 @@ writeField(pvxs::Value* const value,
 
 #define WRITE_FN(NAME, TYPE, TYPE_CODE)                                        \
     extern "C" PVA_LABVIEW_EXPORT labview::ErrCode write##NAME(                \
-      pvxs::Value* const value, const char* field_name, TYPE new_value)        \
+      pvxs::Value* value, const char* field_name, const TYPE new_value)        \
     {                                                                          \
         return writeField(value, field_name, TYPE_CODE, new_value);            \
     }
@@ -352,7 +352,7 @@ WRITE_FN(StringArray,
          pvxs::TypeCode::StringA)
 
 extern "C" PVA_LABVIEW_EXPORT labview::ErrCode
-deleteValue(pvxs::Value* const value)
+deleteValue(const pvxs::Value* value)
 {
     try {
         if (value == nullptr)

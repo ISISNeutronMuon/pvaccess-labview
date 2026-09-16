@@ -29,4 +29,7 @@ Tried to post to a PV that does not exist
 <nierror code="502457">
 Null pointer
 </nierror>
+<nierror code="502458">
+PV name empty
+</nierror>
 </nidocument>

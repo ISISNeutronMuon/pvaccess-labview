@@ -41,6 +41,8 @@ get(pvxs::client::Context* client,
     try {
         if (client == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
+        if (strlen(pv_name) == 0)
+            throw labview::lv_err(PVALVError::empty_pv_name);
 
         *value = new pvxs::Value{ client->get(pv_name).exec()->wait(timeout) };
     } catch (...) {
@@ -58,6 +60,8 @@ put(pvxs::client::Context* client,
     try {
         if (client == nullptr || value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
+        if (strlen(pv_name) == 0)
+            throw labview::lv_err(PVALVError::empty_pv_name);
 
         std::unique_ptr<pvxs::Value> guard(value);
 
@@ -84,10 +88,11 @@ monitor(pvxs::client::Context* client, const char pv_name[], SubHandle** handle)
     try {
         if (client == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
+        if (strlen(pv_name) == 0)
+            throw labview::lv_err(PVALVError::empty_pv_name);
 
         *handle = new SubHandle;
-        if (strlen(pv_name) > 0)
-            (*handle)->ptr = client->monitor(pv_name).maskDisconnected().exec();
+        (*handle)->ptr = client->monitor(pv_name).maskDisconnected().exec();
     } catch (...) {
         return err2code();
     }

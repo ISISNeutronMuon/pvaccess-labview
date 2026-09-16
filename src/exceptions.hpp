@@ -13,6 +13,7 @@ enum PVALVError : labview::ErrCode
     type_mismatch = 502455,
     server_post_pv_not_found = 502456,
     null_ptr = 502457,
+    empty_pv_name = 502458,
 };
 
 labview::ErrCode

@@ -166,6 +166,8 @@ addPV(pvxs::server::StaticSource* source,
     try {
         if (source == nullptr || value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
+        if (strlen(pv_name) == 0)
+            throw labview::lv_err(PVALVError::empty_pv_name);
 
         std::unique_ptr<pvxs::Value> guard(value);
         auto pv{ pvxs::server::SharedPV::buildReadonly() };
@@ -215,6 +217,8 @@ fetch(pvxs::server::StaticSource* source,
     try {
         if (source == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
+        if (strlen(pv_name) == 0)
+            throw labview::lv_err(PVALVError::empty_pv_name);
 
         auto pv = getPV(source, pv_name);
         *value = new pvxs::Value{ pv.fetch() };
@@ -232,6 +236,8 @@ post(pvxs::server::StaticSource* source,
     try {
         if (source == nullptr || value == nullptr)
             throw labview::lv_err(PVALVError::null_ptr);
+        if (strlen(pv_name) == 0)
+            throw labview::lv_err(PVALVError::empty_pv_name);
 
         std::unique_ptr<pvxs::Value> guard(value);
         auto pv = getPV(source, pv_name);

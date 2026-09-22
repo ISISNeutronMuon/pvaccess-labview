@@ -42,6 +42,7 @@
 		<Item Name="Coerce to Type Code.vim" Type="VI" URL="../Coerce to Type Code.vim"/>
 		<Item Name="Concatenate Field Names.vi" Type="VI" URL="../Concatenate Field Names.vi"/>
 		<Item Name="EPICS Time Stamp to Time Stamp.vi" Type="VI" URL="../EPICS Time Stamp to Time Stamp.vi"/>
+		<Item Name="Format Array.vim" Type="VI" URL="../Format Array.vim"/>
 		<Item Name="Get Element.vi" Type="VI" URL="../Get Element.vi"/>
 		<Item Name="Get Type Code (Internal).vim" Type="VI" URL="../Get Type Code (Internal).vim"/>
 		<Item Name="Get Type Code (Scalar Array).vim" Type="VI" URL="../Get Type Code (Scalar Array).vim"/>

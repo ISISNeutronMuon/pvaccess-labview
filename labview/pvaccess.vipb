@@ -1,7 +1,7 @@
-<VI_Package_Builder_Settings Version="2020.1" Created_Date="2025-04-08 18:46:00" Modified_Date="2026-08-17 10:46:01" Creator="ross titmarsh" Comments="" ID="641f92a2645d6051b457a5c0987d334b">
+<VI_Package_Builder_Settings Version="2020.1" Created_Date="2025-04-08 18:46:00" Modified_Date="2026-09-22 16:17:06" Creator="ross titmarsh" Comments="" ID="85e26210a6b6192167e9145919c68cbc">
   <Library_General_Settings>
     <Package_File_Name>epics_pvaccess</Package_File_Name>
-    <Library_Version>0.5.3.23</Library_Version>
+    <Library_Version>0.5.4.24</Library_Version>
     <Auto_Increment_Version>false</Auto_Increment_Version>
     <Library_Source_Folder>..\build\labview</Library_Source_Folder>
     <Library_Output_Folder>..\..</Library_Output_Folder>
@@ -40,8 +40,13 @@
       <Packager>Ross Titmarsh</Packager>
       <URL>https://github.com/ISISNeutronMuon/pvaccess-labview</URL>
       <Release_Notes>Fixes:
-- Added a different DLL search path when using the runtime engine
-- Fixed custom error codes not being picked up by LabVIEW</Release_Notes>
+- Fixed LabVIEW to string methods not working for integer arrays
+- Fixed memory leak in string handling
+- Fixed memory over-allocation in array handling
+- Fixed pointers not being freed if an error is thrown
+- Fixed subscription loop using unnessecary CPU
+- Fixed crash if an empty PV name is given, this not throws an error
+- Fixed not being install the NI Linux RT package if libevent subpackages cannot be found by adding fallbacks</Release_Notes>
     </Description>
     <Destinations>
       <Toolkit_VIs>
@@ -559,7 +564,7 @@
         <Path>..\build\labview\source\PV Data\Is Probeable\To Probe.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>DE8B110EFFBF375E5A18144D4455467F</GUID>
+      <GUID>83FDA50700D2BAAA0A59DFD3F2C23183</GUID>
     </Functions_Palette_Data>
     <Functions_Palette_Data>
       <Parent_Palette_Index>0</Parent_Palette_Index>
@@ -608,7 +613,7 @@
         <Path>..\build\labview\source\PV Data\Time Stamp to EPICS Time Stamp.vi</Path>
         <VI_Title/>
       </Items_Data>
-      <GUID>881185032CA72AE4AF5BAC023DEAB6E8</GUID>
+      <GUID>26CB4FCAAEF2CE518F580AF8111ED1DD</GUID>
     </Functions_Palette_Data>
   </Library_Palette_Definition>
 </VI_Package_Builder_Settings>
